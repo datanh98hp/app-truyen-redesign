@@ -121,7 +121,7 @@ export default function Header() {
 
   return (
     <header className="shadow-md w-full">
-      <nav className="max-w-7xl mx-auto  px-4">
+      <nav className="max-w-7xl mx-auto">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -152,7 +152,7 @@ export default function Header() {
                 className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs"
               />
               {/* suggets result */}
-              {showSuggest && searchKeyword.trim()!=="" &&  (
+              {showSuggest && searchKeyword.trim() !== "" && (
                 <div className="z-10 absolute top-14 bg-[#18191a] w-xs">
                   <ScrollArea className="h-72 rounded-md border w-full">
                     <div className="p-4">
@@ -204,12 +204,12 @@ export default function Header() {
         </div>
       </nav>
       {/* ------ */}
-      <div className="w-full dark:bg-[#18191a] dark:text-white bg-amber-600 text-white">
+      <div className=" dark:bg-[#18191a] dark:text-white bg-amber-600 text-white">
         <nav className="max-w-7xl mx-auto px-4  ">
           {/* Top Level Navigation */}
           <div className="flex justify-between h-14">
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-4">
               {menuItems.map((item, index) => (
                 <div
                   key={index}
@@ -263,7 +263,7 @@ export default function Header() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
+            <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-gray-100 "
@@ -301,7 +301,7 @@ export default function Header() {
                 )}
               </button>
             </div>
-            <div className="md:hidden flex items-center">
+            <div className="lg:hidden flex items-center">
               {/* <Button
                 variant={"outline"}
                 className="border border-gray-200 rounded-full text-black"
@@ -330,7 +330,7 @@ export default function Header() {
 
           {/* Mobile Menu */}
           <div
-            className={`md:hidden transition-all duration-200 ${
+            className={`lg:hidden transition-all duration-200 ${
               isMobileMenuOpen ? "max-h-fit" : "max-h-0 overflow-hidden"
             }`}
           >
