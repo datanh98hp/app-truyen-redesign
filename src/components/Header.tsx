@@ -15,6 +15,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { ScrollArea } from "./ui/scroll-area";
+import { Separator } from "@radix-ui/react-menubar";
 
 interface MenuItem {
   label: string;
@@ -93,7 +95,10 @@ const menuItems: MenuItem[] = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<number[]>([]);
+  //search input
   const [searchKeyword, setSearchKeyword] = useState("");
+  // show suggest result
+  const [showSuggest, setShowSuggest] = useState(false);
   //theme
   const { setTheme, theme } = useTheme();
 
@@ -110,6 +115,10 @@ export default function Header() {
   const handleSearch = () => {
     console.log("Searching for:", searchKeyword);
   };
+  const tags = Array.from({ length: 50 }).map(
+    (_, i, a) => `v1.2.0-beta.${a.length - i}`
+  );
+
   return (
     <header className="shadow-md w-full">
       <nav className="max-w-7xl mx-auto  px-4">
@@ -136,10 +145,33 @@ export default function Header() {
               <Input
                 type="Search"
                 placeholder="Search ..."
+                onFocus={() => setShowSuggest(true)}
+                onBlur={() => setShowSuggest(false)}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs"
               />
+              {/* suggets result */}
+              {showSuggest && searchKeyword.trim()!=="" &&  (
+                <div className="z-10 absolute top-14 bg-[#18191a] w-xs">
+                  <ScrollArea className="h-72 rounded-md border w-full">
+                    <div className="p-4">
+                      <h4 className="mb-4 text-sm font-medium leading-none">
+                        Goi y
+                      </h4>
+                      {tags.map((tag) => (
+                        <>
+                          <div key={tag} className="text-sm">
+                            {tag}
+                          </div>
+                          <Separator className="my-2" />
+                        </>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </div>
+              )}
+
               <button
                 onClick={handleSearch}
                 className="ml-2 border rounded-full"
