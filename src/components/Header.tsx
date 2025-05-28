@@ -1,10 +1,10 @@
 "use client";
-import { use, useState } from "react";
+import { MoonIcon, SunIcon, User2Icon } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "./ui/button";
-import { SunIcon, MoonIcon, User2Icon } from "lucide-react";
-import { useTheme } from "next-themes";
 interface MenuItem {
   label: string;
   href: string;
@@ -121,7 +121,10 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant={"outline"} className="border border-gray-200 rounded-full text-black">
+            <Button
+              variant={"outline"}
+              className="border border-gray-200 rounded-full text-black"
+            >
               <User2Icon className="" />
             </Button>
           </div>
@@ -131,7 +134,7 @@ export default function Header() {
       <div className="w-full dark:bg-[#18191a] dark:text-white bg-amber-600 text-white">
         <nav className="max-w-7xl mx-auto px-4  ">
           {/* Top Level Navigation */}
-          <div className="flex justify-between h-14"> 
+          <div className="flex justify-between h-14">
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-4">
               {menuItems.map((item, index) => (
@@ -226,7 +229,10 @@ export default function Header() {
               </button>
             </div>
             <div className="md:hidden flex items-center">
-              <Button variant={"outline"} className="border border-gray-200 rounded-full text-black">
+              <Button
+                variant={"outline"}
+                className="border border-gray-200 rounded-full text-black"
+              >
                 <User2Icon className="" />
               </Button>
             </div>
