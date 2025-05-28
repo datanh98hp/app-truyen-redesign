@@ -1,10 +1,4 @@
 "use client";
-import { MoonIcon, Search, SearchIcon, SunIcon, User2Icon } from "lucide-react";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Button } from "./ui/button";
 import {
   Menubar,
   MenubarContent,
@@ -14,6 +8,12 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { MoonIcon, SearchIcon, SunIcon, User2Icon } from "lucide-react";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 interface MenuItem {
@@ -93,7 +93,7 @@ const menuItems: MenuItem[] = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<number[]>([]);
-
+  const [searchKeyword, setSearchKeyword] = useState("");
   //theme
   const { setTheme, theme } = useTheme();
 
@@ -105,6 +105,10 @@ export default function Header() {
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
     console.log("Dropdown toggled for theme:", theme);
+  };
+
+  const handleSearch = () => {
+    console.log("Searching for:", searchKeyword);
   };
   return (
     <header className="shadow-md w-full">
@@ -123,19 +127,24 @@ export default function Header() {
             </Link>
             <Button
               variant={"outline"}
-              className="border border-gray-200 h-10 ml-2 rounded-full"
+              className="border border-gray-200 h-10 ml-2 rounded-full "
               onClick={toggleTheme}
             >
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
-            <div className="ml-2 border p-1 h-10 rounded-4xl inline-flex items-center">
+            <div className="ml-2 borderh-10 rounded-4xl inline-flex items-center">
               <Input
                 type="Search"
-                placeholder="Email"
-                className="border-0 focus-visible:ring-0 w-60"
+                placeholder="Search ..."
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
+                className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs"
               />
-              <button onClick={() => console.log("Search")}>
-                <SearchIcon className="w-8 h-10 p-2" />
+              <button
+                onClick={handleSearch}
+                className="ml-2 border rounded-full"
+              >
+                <SearchIcon className="w-9 h-9 p-2" />
               </button>
             </div>
           </div>
