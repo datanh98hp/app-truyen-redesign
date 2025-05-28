@@ -5,6 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+
 interface MenuItem {
   label: string;
   href: string;
@@ -120,13 +130,24 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant={"outline"}
-              className="border border-gray-200 rounded-full text-black"
-            >
-              <User2Icon className="" />
-            </Button>
+          <div className="hidden md:flex items-center space-x-6">
+            <Menubar about="Menu" className="border-1 rounded-full" >
+                <MenubarMenu>
+                  <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
+                    <User2Icon className="w-4 h-6" />
+                  </MenubarTrigger>
+                  <MenubarContent className="w-16 h-fit">
+                    <MenubarItem>
+                      Thông tin <MenubarShortcut></MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem>Danh sách theo dõ</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Lịch sử</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Đăng xuất</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
           </div>
         </div>
       </nav>
@@ -229,12 +250,29 @@ export default function Header() {
               </button>
             </div>
             <div className="md:hidden flex items-center">
-              <Button
+              {/* <Button
                 variant={"outline"}
                 className="border border-gray-200 rounded-full text-black"
               >
                 <User2Icon className="" />
-              </Button>
+              </Button> */}
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>
+                    <User2Icon className="" />
+                  </MenubarTrigger>
+                  <MenubarContent className="w-16 h-fit">
+                    <MenubarItem>
+                      Thông tintin <MenubarShortcut></MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem>Danh sách theo dõ</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Lịch sử</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Đăng xuất</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
             </div>
           </div>
 
