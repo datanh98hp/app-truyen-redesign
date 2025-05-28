@@ -1,5 +1,5 @@
 "use client";
-import { MoonIcon, SunIcon, User2Icon } from "lucide-react";
+import { MoonIcon, Search, SearchIcon, SunIcon, User2Icon } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,8 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-} from "@/components/ui/menubar"
+} from "@/components/ui/menubar";
+import { Input } from "./ui/input";
 
 interface MenuItem {
   label: string;
@@ -122,32 +123,42 @@ export default function Header() {
             </Link>
             <Button
               variant={"outline"}
-              className="border border-gray-200 ml-2 rounded-full"
+              className="border border-gray-200 h-10 ml-2 rounded-full"
               onClick={toggleTheme}
             >
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
+            <div className="ml-2 border p-1 h-10 rounded-4xl inline-flex items-center">
+              <Input
+                type="Search"
+                placeholder="Email"
+                className="border-0 focus-visible:ring-0 w-60"
+              />
+              <button onClick={() => console.log("Search")}>
+                <SearchIcon className="w-8 h-10 p-2" />
+              </button>
+            </div>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <Menubar about="Menu" className="border-1 rounded-full" >
-                <MenubarMenu>
-                  <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
-                    <User2Icon className="w-4 h-6" />
-                  </MenubarTrigger>
-                  <MenubarContent className="w-16 h-fit">
-                    <MenubarItem>
-                      Thông tin <MenubarShortcut></MenubarShortcut>
-                    </MenubarItem>
-                    <MenubarItem>Danh sách theo dõ</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Lịch sử</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Đăng xuất</MenubarItem>
-                  </MenubarContent>
-                </MenubarMenu>
-              </Menubar>
+            <Menubar about="Menu" className="border-1 rounded-full">
+              <MenubarMenu>
+                <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
+                  <User2Icon className="w-4 h-6" />
+                </MenubarTrigger>
+                <MenubarContent className="w-16 h-fit">
+                  <MenubarItem>
+                    Thông tin <MenubarShortcut></MenubarShortcut>
+                  </MenubarItem>
+                  <MenubarItem>Danh sách theo dõ</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem>Lịch sử</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem>Đăng xuất</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
           </div>
         </div>
       </nav>
@@ -214,7 +225,7 @@ export default function Header() {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-600 hover:text-gray-900 p-2"
+                className="text-gray-100 "
                 aria-expanded={isMobileMenuOpen}
                 aria-label="Toggle menu"
               >
@@ -256,10 +267,10 @@ export default function Header() {
               >
                 <User2Icon className="" />
               </Button> */}
-              <Menubar>
+              <Menubar className="rounded-full dark:text-white text-black">
                 <MenubarMenu>
-                  <MenubarTrigger>
-                    <User2Icon className="" />
+                  <MenubarTrigger className="data-[state=open]:bg-transparent">
+                    <User2Icon className="w-4 h-6" />
                   </MenubarTrigger>
                   <MenubarContent className="w-16 h-fit">
                     <MenubarItem>
