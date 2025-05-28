@@ -3,7 +3,7 @@ import { use, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { SunIcon, MoonIcon, MenuIcon, XIcon } from "lucide-react";
+import { SunIcon, MoonIcon, User2Icon } from "lucide-react";
 import { useTheme } from "next-themes";
 interface MenuItem {
   label: string;
@@ -93,7 +93,7 @@ export default function Header() {
   };
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-    console.log("Dropdown toggled for index:", theme);
+    console.log("Dropdown toggled for theme:", theme);
   };
   return (
     <header className="shadow-md w-full">
@@ -121,17 +121,17 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant={"outline"} className="border border-gray-200">
-              Account
+            <Button variant={"outline"} className="border border-gray-200 rounded-full text-black">
+              <User2Icon className="" />
             </Button>
           </div>
         </div>
       </nav>
       {/* ------ */}
-      <div className="w-full dark:bg-[#18191a] dark:text-white bg-amber-600 text-black">
+      <div className="w-full dark:bg-[#18191a] dark:text-white bg-amber-600 text-white">
         <nav className="max-w-7xl mx-auto px-4  ">
           {/* Top Level Navigation */}
-          <div className="flex justify-between h-14">
+          <div className="flex justify-between h-14"> 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-4">
               {menuItems.map((item, index) => (
@@ -141,7 +141,7 @@ export default function Header() {
                   onMouseEnter={() => toggleDropdown(index)}
                   onMouseLeave={() => toggleDropdown(index)}
                 >
-                  <button className="px-2 py-2 dark:bg-[#18191a] dark:text-white  hover:underline inline-flex items-center gap-1">
+                  <button className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
                     {item.label}
                     {item.subItems && (
                       <svg
@@ -175,7 +175,7 @@ export default function Header() {
                         <Link
                           key={subIndex}
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 hover:underline transition-colors"
+                          className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700  hover:underline transition-colors"
                         >
                           {subItem.label}
                         </Link>
@@ -226,8 +226,8 @@ export default function Header() {
               </button>
             </div>
             <div className="md:hidden flex items-center">
-              <Button variant={"outline"} className="border border-gray-200">
-                Account
+              <Button variant={"outline"} className="border border-gray-200 rounded-full text-black">
+                <User2Icon className="" />
               </Button>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function Header() {
           {/* Mobile Menu */}
           <div
             className={`md:hidden transition-all duration-200 ${
-              isMobileMenuOpen ? "max-h-[32rem]" : "max-h-0 overflow-hidden"
+              isMobileMenuOpen ? "max-h-fit" : "max-h-0 overflow-hidden"
             }`}
           >
             {menuItems.map((item, index) => (
@@ -264,7 +264,7 @@ export default function Header() {
                 {item.subItems && (
                   <div
                     className={`
-                  pl-4  transition-all duration-200 grid grid-cols-4 gap-4 dark:bg-gray-700
+                  pl-4  transition-all duration-200 grid grid-cols-4 gap-4 dark:bg-gray-700 dark:text-gray-100 bg-gray-50 text-black
                   ${
                     openDropdowns.includes(index)
                       ? "max-h-96 opacity-100"
