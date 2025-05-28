@@ -12,7 +12,7 @@ import { MoonIcon, SearchIcon, SunIcon, User2Icon } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
@@ -101,7 +101,22 @@ export default function Header() {
   const [showSuggest, setShowSuggest] = useState(false);
   //theme
   const { setTheme, theme } = useTheme();
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggest(false);
+      }
+    }
 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const toggleDropdown = (index: number) => {
     setOpenDropdowns((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
@@ -146,14 +161,13 @@ export default function Header() {
                 type="Search"
                 placeholder="Search ..."
                 onFocus={() => setShowSuggest(true)}
-                onBlur={() => setShowSuggest(false)}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs"
               />
               {/* suggets result */}
               {showSuggest && searchKeyword.trim() !== "" && (
-                <div className="z-10 absolute top-14 bg-[#18191a] w-xs">
+                <div className="z-10 absolute top-14 dark:bg-[#18191a] bg-gray-100 w-xs rounded-2xl" ref={searchContainerRef}>
                   <ScrollArea className="h-72 rounded-md border w-full">
                     <div className="p-4">
                       <h4 className="mb-4 text-sm font-medium leading-none">
