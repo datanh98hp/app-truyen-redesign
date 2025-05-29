@@ -4,6 +4,7 @@ export default function Footer() {
     <footer className="border w-full h-fit row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
       <div className="border flex gap-[24px] flex-wrap items-center justify-center">
         <div>
+            
           <div
             className="fb-page"
             data-href="https://www.facebook.com/truyen.qq.2025"
