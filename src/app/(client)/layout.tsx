@@ -7,9 +7,9 @@ export default function ClientLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-rows-[auto_1fr_20px] justify-items-center min-h-screen pb-20 gap-16  font-[family-name:var(--font-geist-sans)]">
+    <div className="">
       <Header />
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-[32px] my-2 items-center border">
         {children}
       </main>
       <Footer />

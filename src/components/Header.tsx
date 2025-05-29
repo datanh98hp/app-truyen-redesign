@@ -152,7 +152,7 @@ export default function Header() {
               className="border border-gray-200 h-10 ml-2 rounded-full "
               onClick={toggleTheme}
             >
-              {theme === "light" || theme === "system" ? (
+              { theme === "light" || theme === "system" ? (
                 <MoonIcon />
               ) : (
                 <SunIcon />

@@ -1,6 +1,11 @@
+import { SwipperContent } from "@/components/content/swipper";
 
 export default function Home() {
   return (
-        <p>Content - home page</p>
+    <>
+      <SwipperContent />
+      <p>Content - home page</p>
+    </>
   );
 }
+``
