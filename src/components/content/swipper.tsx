@@ -8,7 +8,8 @@ export function SwipperContent() {
   return (
     <div className="max-w-screen h-fit md:w-6xl w-xl mx-2 md:mx-0">
       <Swiper
-       spaceBetween={30}
+        slidesPerView={5}
+        spaceBetween={15}
         centeredSlides={true}
         autoplay={{
           delay: 2500,
