@@ -3,7 +3,7 @@ const tags = ["Mystery", "Fantasy", "Romance", "Drama", "Comedy", "Action", "Adv
 export default function Footer() {
   return (
     <footer className="border w-full h-fit row-start-3 md:flex flex-row gap-[24px] items-center justify-center">
-      <div className=" h-42 w-full font-quicksand">
+      <div className="border h-42 w-full font-quicksand">
         <h1 className="font-bold mx-auto">Fanpage</h1>
       </div>
       <div className=" h-42 w-full font-quicksand">
