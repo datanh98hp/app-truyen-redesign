@@ -1,12 +1,20 @@
-
+import { Badge } from "./ui/badge";
+const tags = ["Mystery", "Fantasy", "Romance", "Drama", "Comedy", "Action", "Adventure","Horror","Thriller","Drama", "Comedy", "Action","Drama", "Comedy", "Action",];
 export default function Footer() {
   return (
-    <footer className="border w-full h-fit row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-      <div className="border flex gap-[24px] flex-wrap items-center justify-center">
-        <div>
-          <h1 className="font-bold">Fanpage</h1>
+    <footer className="border w-full h-fit row-start-3 md:flex flex-row gap-[24px] items-center justify-center">
+      <div className=" h-42 w-full font-quicksand">
+        <h1 className="font-bold mx-auto">Fanpage</h1>
+      </div>
+      <div className=" h-42 w-full font-quicksand">
+        <div className="font-semibold ">List popular tag</div>
+        <div className="flex flex-row gap-2 flex-wrap">
+          {
+            tags.map((tag, index) => (
+              <Badge key={index} variant="outline">{tag}</Badge>
+            ))
+          }
         </div>
-        <div className=" flex">tags</div>
       </div>
     </footer>
   );

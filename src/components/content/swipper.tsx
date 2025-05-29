@@ -6,7 +6,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 export function SwipperContent() {
   return (
-    <div className="max-w-screen h-fit md:w-6xl w-xl mx-2 md:mx-0">
+    <div className="mx-auto md:p-0 h-fit">
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
@@ -19,11 +19,11 @@ export function SwipperContent() {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 5,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 5,
             spaceBetween: 10,
           },
           1024: {
@@ -35,8 +35,8 @@ export function SwipperContent() {
         className="mySwiper"
       >
         {Array.from({ length: 20 }).map((_, index) => (
-          <SwiperSlide key={index} className="border ">
-            <div className="h-40">Slide {index + 1}</div>
+          <SwiperSlide key={index} className="border">
+            <div className="h-56">Slide {index + 1}</div>
           </SwiperSlide>
         ))}
       </Swiper>

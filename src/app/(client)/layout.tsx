@@ -9,9 +9,7 @@ export default function ClientLayout({
   return (
     <div className="">
       <Header />
-      <main className="flex flex-col gap-[32px] my-2 items-center border">
-        {children}
-      </main>
+      <main className="max-w-7xl mx-auto px-2 border">{children}</main>
       <Footer />
     </div>
   );
