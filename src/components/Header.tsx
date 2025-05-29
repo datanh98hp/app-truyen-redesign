@@ -130,9 +130,7 @@ export default function Header() {
   const handleSearch = () => {
     console.log("Searching for:", searchKeyword);
   };
-  const tags = Array.from({ length: 50 }).map(
-    (_, i, a) => `v1.2.0-beta.${a.length - i}`
-  );
+  const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
 
   return (
     <header className="shadow-md w-full">
@@ -154,7 +152,11 @@ export default function Header() {
               className="border border-gray-200 h-10 ml-2 rounded-full "
               onClick={toggleTheme}
             >
-              {theme === "light" ? <MoonIcon /> : <SunIcon />}
+              {theme === "light" || theme === "system" ? (
+                <MoonIcon />
+              ) : (
+                <SunIcon />
+              )}
             </Button>
             <div className="ml-2 borderh-10 rounded-4xl inline-flex items-center">
               <Input
@@ -167,7 +169,10 @@ export default function Header() {
               />
               {/* suggets result */}
               {showSuggest && searchKeyword.trim() !== "" && (
-                <div className="z-10 absolute top-14 dark:bg-[#18191a] bg-gray-100 w-xs rounded-2xl" ref={searchContainerRef}>
+                <div
+                  className="z-10 absolute top-14 dark:bg-[#18191a] bg-gray-100 w-xs rounded-2xl"
+                  ref={searchContainerRef}
+                >
                   <ScrollArea className="h-72 rounded-md border w-full">
                     <div className="p-4">
                       <h4 className="mb-4 text-sm font-medium leading-none">
@@ -203,12 +208,18 @@ export default function Header() {
                   <User2Icon className="w-4 h-6" />
                 </MenubarTrigger>
                 <MenubarContent className="w-16 h-fit">
-                  <MenubarItem>
-                    Thông tin <MenubarShortcut></MenubarShortcut>
-                  </MenubarItem>
-                  <MenubarItem>Danh sách theo dõ</MenubarItem>
+                  <Link href="/user">
+                    <MenubarItem>
+                      Thong tin <MenubarShortcut></MenubarShortcut>
+                    </MenubarItem>
+                  </Link>
+                  <Link href="/follows">
+                    <MenubarItem>Danh sách theo dõi</MenubarItem>
+                  </Link>
                   <MenubarSeparator />
-                  <MenubarItem>Lịch sử</MenubarItem>
+                  <Link href="/history">
+                    <MenubarItem>Lich su xem</MenubarItem>
+                  </Link>
                   <MenubarSeparator />
                   <MenubarItem>Đăng xuất</MenubarItem>
                 </MenubarContent>
@@ -232,7 +243,7 @@ export default function Header() {
                   onMouseLeave={() => toggleDropdown(index)}
                 >
                   <button className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
-                    {item.label}
+                    <Link href={item.href}>{item.label}</Link>
                     {item.subItems && (
                       <svg
                         className={`w-4 h-4 transition-transform duration-200 ${
