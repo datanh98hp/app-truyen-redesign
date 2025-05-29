@@ -152,20 +152,20 @@ export default function Header() {
               className="border border-gray-200 h-10 ml-2 rounded-full "
               onClick={toggleTheme}
             >
-              { theme === "light" || theme === "system" ? (
-                <MoonIcon />
+              {theme === "light" || theme === "system" ? (
+                <MoonIcon className="w-6 h-6" />
               ) : (
-                <SunIcon />
+                <SunIcon className="w-6 h-6" />
               )}
             </Button>
-            <div className="ml-2 borderh-10 rounded-4xl inline-flex items-center">
+            <div className="ml-2 border-0 h-10 rounded-4xl inline-flex items-center ">
               <Input
                 type="Search"
                 placeholder="Search ..."
                 onFocus={() => setShowSuggest(true)}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs"
+                className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs dark:bg-[#18191a] bg-gray-100"
               />
               {/* suggets result */}
               {showSuggest && searchKeyword.trim() !== "" && (
@@ -193,7 +193,7 @@ export default function Header() {
 
               <button
                 onClick={handleSearch}
-                className="ml-2 border rounded-full"
+                className="ml-2 border rounded-full "
               >
                 <SearchIcon className="w-9 h-9 p-2" />
               </button>
@@ -201,7 +201,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6">
             <Menubar about="Menu" className="border-1 rounded-full">
               <MenubarMenu>
                 <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
