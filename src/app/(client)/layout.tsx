@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 export default function ClientLayout({
@@ -11,9 +12,7 @@ export default function ClientLayout({
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         {children}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        Footer
-      </footer>
+      <Footer/>
     </div>
   );
 }
