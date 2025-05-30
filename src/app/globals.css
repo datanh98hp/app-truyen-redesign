@@ -124,5 +124,5 @@
 }
 
 .chapter-item {
-  @apply border rounded-md ;
+  @apply border rounded-md mb-3;
 }

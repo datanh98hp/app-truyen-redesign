@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function ChapterItem({
@@ -7,15 +8,15 @@ export function ChapterItem({
   subTitle,
   ...props
 }: {
-  src: string;
+  src?: string;
   className?: string;
   title: string;
   subTitle: string;
 }) {
   return (
-    <div className="h-full chapter-item">
+    <div className={cn("chapter-item", className)} {...props} >
       <Image
-        src="/assets/thumb.png"
+        src={src || "/assets/thumb.png"}
         alt="image"
         width={190}
         height={247}
@@ -23,8 +24,12 @@ export function ChapterItem({
         className="w-xl border rounded-sm"
       />
       <div className="">
-        <p className="my-2 font-semibold font-quicksand truncate">{title}</p>
-        <p className="font-semibold font-quicksand text-center">{subTitle}</p>
+        <p className="my-1 font-semibold text-center font-quicksand truncate">
+          {title}
+        </p>
+        <p className="font-semibold text-sm my-2 font-quicksand text-center">
+          {subTitle}
+        </p>
       </div>
     </div>
   );

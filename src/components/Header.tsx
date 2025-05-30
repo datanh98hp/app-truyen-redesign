@@ -26,7 +26,7 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    label: "Home",
+    label: "Trang chủ",
     href: "/",
   },
   {
@@ -54,12 +54,12 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: "Rankings",
+    label: "Xếp hạnghạng",
     href: "/rankings",
     subItems: [
-      { label: "Top Weekly", href: "/rankings/weekly" },
-      { label: "Top Monthly", href: "/rankings/monthly" },
-      { label: "All Time", href: "/rankings/all-time" },
+      { label: "Top Tuần", href: "/rankings/weekly" },
+      { label: "Top Tháng", href: "/rankings/monthly" },
+      { label: "Tất cả", href: "/rankings/all-time" },
     ],
   },
   {
@@ -67,23 +67,23 @@ const menuItems: MenuItem[] = [
     href: "/",
   },
   {
-    label: "Con gai",
+    label: "Con gái",
     href: "/",
   },
   {
-    label: "Tim kiem",
+    label: "Tìm kiếm",
     href: "/",
   },
   {
-    label: "Lich su",
+    label: "Lịch sử",
     href: "/",
   },
   {
-    label: "Follow",
+    label: "Theo dõi",
     href: "/",
   },
   {
-    label: "Thao luan",
+    label: "Thảo luận",
     href: "/",
   },
   {
@@ -210,7 +210,7 @@ export default function Header() {
                 <MenubarContent className="w-16 h-fit">
                   <Link href="/user">
                     <MenubarItem>
-                      Thong tin <MenubarShortcut></MenubarShortcut>
+                      Thông tin <MenubarShortcut></MenubarShortcut>
                     </MenubarItem>
                   </Link>
                   <Link href="/follows">
@@ -218,7 +218,7 @@ export default function Header() {
                   </Link>
                   <MenubarSeparator />
                   <Link href="/history">
-                    <MenubarItem>Lich su xem</MenubarItem>
+                    <MenubarItem>Lịch sử xem</MenubarItem>
                   </Link>
                   <MenubarSeparator />
                   <MenubarItem>Đăng xuất</MenubarItem>
