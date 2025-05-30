@@ -1,7 +1,7 @@
-import { ProfileForm } from "@/components/content/User/UserForm";
+import { ChangePasswordForm } from "@/components/content/User/ChangePasswordForm";
 import Image from "next/image";
 
-export default function UserInformation() {
+export default function UserChangePassword() {
   return (
     <>
       <div className="">
@@ -14,7 +14,7 @@ export default function UserInformation() {
         />
       </div>
 
-      <ProfileForm />
+      <ChangePasswordForm />
     </>
   );
 }
