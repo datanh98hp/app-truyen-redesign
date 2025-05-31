@@ -54,12 +54,15 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: "Xếp hạnghạng",
+    label: "Xếp hạng",
     href: "/rankings",
     subItems: [
+      { label: "Top ngày", href: "/rankings/day" },
       { label: "Top Tuần", href: "/rankings/weekly" },
       { label: "Top Tháng", href: "/rankings/monthly" },
       { label: "Tất cả", href: "/rankings/all-time" },
+      { label: "Top yêu thích", href: "/rankings/top-favorite" },
+      { label: "Mới nhất", href: "/rankings/newest" },
     ],
   },
   {
@@ -264,7 +267,7 @@ export default function Header() {
                     <div
                       className={`dark:border
       absolute mt-2 w-max dark:bg-[#18191a] dark:text-white bg-gray-100 text-black shadow-lg z-50
-      transition-all duration-200 ease-in-out grid grid-cols-4 gap-4
+      transition-all duration-200 ease-in-out grid grid-cols-8 gap-6
       ${
         openDropdowns.includes(index)
           ? "opacity-100 visible translate-y-0"
@@ -276,7 +279,7 @@ export default function Header() {
                         <Link
                           key={subIndex}
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700  hover:underline transition-colors"
+                          className="block p-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-700  hover:underline transition-colors"
                         >
                           {subItem.label}
                         </Link>
@@ -339,14 +342,18 @@ export default function Header() {
                     <User2Icon className="w-4 h-6" />
                   </MenubarTrigger>
                   <MenubarContent className="w-16 h-fit">
+                    <Link href="/user">
                     <MenubarItem>
-                      Thông tintin <MenubarShortcut></MenubarShortcut>
+                      Thông tin <MenubarShortcut></MenubarShortcut>
                     </MenubarItem>
-                    <MenubarItem>Danh sách theo dõ</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Lịch sử</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Đăng xuất</MenubarItem>
+                  </Link>
+                  <Link href="/follows">
+                    <MenubarItem>Danh sách theo dõi</MenubarItem>
+                  </Link>
+                  <MenubarSeparator />
+                  <Link href="/history">
+                    <MenubarItem>Lịch sử xem</MenubarItem>
+                  </Link>
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
