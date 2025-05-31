@@ -140,43 +140,46 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto">
         <div className="flex justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/">
-              <Image
-                src="https://st.truyenqqgo.com/template/frontend/images/logo-icon.png"
-                alt="Logo"
-                width={40}
-                height={40}
-                priority
-              />
-            </Link>
-            <Button
-              variant={"outline"}
-              className="border border-gray-200 h-10 ml-2 rounded-full "
-              onClick={toggleTheme}
-            >
-              {theme === "light" || theme === "system" ? (
-                <MoonIcon className="w-6 h-6" />
-              ) : (
-                <SunIcon className="w-6 h-6" />
-              )}
-            </Button>
-            <div className="ml-2 border-0 h-10 rounded-4xl inline-flex items-center ">
+          <div className="flex-shrink-0 flex items-center justify-between">
+            <div className="flex items-center ml-2">
+              <Link href="/">
+                <Image
+                  src="https://st.truyenqqgo.com/template/frontend/images/logo-icon.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  priority
+                  className=""
+                />
+              </Link>
+              <Button
+                variant={"outline"}
+                className="border border-gray-200 h-10 ml-2 rounded-full "
+                onClick={toggleTheme}
+              >
+                {theme === "light" || theme === "system" ? (
+                  <MoonIcon className="w-6 h-6" />
+                ) : (
+                  <SunIcon className="w-6 h-6" />
+                )}
+              </Button>
+            </div>
+            <div className="ml-2 border-0 h-10 mr-2 rounded-4xl inline-flex items-center">
               <Input
                 type="Search"
                 placeholder="Search ..."
                 onFocus={() => setShowSuggest(true)}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-xs dark:bg-[#18191a] bg-gray-100"
+                className="border-0 focus-visible:ring-0 rounded-4xl h-10 w-[13rem] lg:w-xs dark:bg-[#18191a] bg-gray-100"
               />
               {/* suggets result */}
               {showSuggest && searchKeyword.trim() !== "" && (
                 <div
-                  className="z-10 absolute top-14 dark:bg-[#18191a] bg-gray-100 w-xs rounded-2xl"
+                  className="z-10 absolute top-14 dark:bg-[#18191a] bg-gray-100  w-[16rem] lg:w-xs rounded-2xl"
                   ref={searchContainerRef}
                 >
-                  <ScrollArea className="h-72 rounded-md border w-full">
+                  <ScrollArea className="h-72 rounded-md border">
                     <div className="p-4">
                       <h4 className="mb-4 text-sm font-medium leading-none">
                         Goi y
@@ -198,7 +201,7 @@ export default function Header() {
                 onClick={handleSearch}
                 className="ml-2 border rounded-full "
               >
-                <SearchIcon className="w-9 h-9 p-2" />
+                <SearchIcon className="w-9 h-9 p-1" />
               </button>
             </div>
           </div>
@@ -343,17 +346,19 @@ export default function Header() {
                   </MenubarTrigger>
                   <MenubarContent className="w-16 h-fit">
                     <Link href="/user">
-                    <MenubarItem>
-                      Thông tin <MenubarShortcut></MenubarShortcut>
-                    </MenubarItem>
-                  </Link>
-                  <Link href="/follows">
-                    <MenubarItem>Danh sách theo dõi</MenubarItem>
-                  </Link>
-                  <MenubarSeparator />
-                  <Link href="/history">
-                    <MenubarItem>Lịch sử xem</MenubarItem>
-                  </Link>
+                      <MenubarItem>
+                        Thông tin <MenubarShortcut></MenubarShortcut>
+                      </MenubarItem>
+                    </Link>
+                    <Link href="/follows">
+                      <MenubarItem>Danh sách theo dõi</MenubarItem>
+                    </Link>
+                    <MenubarSeparator />
+                    <Link href="/history">
+                      <MenubarItem>Lịch sử xem</MenubarItem>
+                    </Link>
+                    <MenubarSeparator />
+                    <MenubarItem>Đăng xuất</MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>

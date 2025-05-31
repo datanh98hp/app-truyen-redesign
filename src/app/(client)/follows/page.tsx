@@ -3,7 +3,7 @@ import { FlagIcon } from "lucide-react";
 
 export default function Follows() {
   return (
-    <div className="font-semibold font-quicksand">
+    <div className="font-semibold font-quicksand w-full">
       <BadgeContent
         icon={<FlagIcon />}
         title="Đang theo dõi"

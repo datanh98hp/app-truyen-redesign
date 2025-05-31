@@ -16,7 +16,7 @@ export default async function Top({
         textColor="#ff2853"
         className="py-4 text-xl"
       />
-      <div className="">
+      <div className="w-full">
         <div className="filter-bar border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
           <div className="flex flex-row gap-4 p-2">
             <p className="font-semibold p-2">Trạng thái</p>
