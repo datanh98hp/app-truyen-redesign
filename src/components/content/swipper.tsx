@@ -19,8 +19,12 @@ export function SwipperContent() {
           delay: 2500,
         }}
         breakpoints={{
+          0: {
+            slidesPerView: 3,
+            spaceBetween: 5,
+          },
           640: {
-            slidesPerView: 4 ,
+            slidesPerView: 4,
             spaceBetween: 2,
           },
           768: {
@@ -35,7 +39,7 @@ export function SwipperContent() {
         modules={[Navigation, Autoplay, Pagination]}
         className="mySwiper"
       >
-        {Array.from({ length: 20 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <SwiperSlide key={index} className="">
             <div className="h-full chapter-item">
               <Image
@@ -44,11 +48,11 @@ export function SwipperContent() {
                 width={190}
                 height={247}
                 sizes="(max-width: 168px) 100vw, (max-width: 247px) 50vw, 33vw"
-                className="w-xl border rounded-sm"
+                className="w-full border rounded-sm"
               />
               <div className="">
-                <p className="my-2 font-semibold font-quicksand truncate hover:underline hover:text-orange-500  dark:text-amber-50 cursor-pointer">
-                  title asfjpj fpaspf kfi0afafo jfofjoafw jofj-fj-afjf- {index}
+                <p className="p-2 font-semibold font-quicksand truncate hover:underline hover:text-orange-500  dark:text-amber-50 cursor-pointer">
+                  title asfjpj fpaspf kfi0afafo jfofjoafw jofj-fj-afjf sv f è- {index}
                 </p>
                 <p className="font-semibold font-quicksand text-center hover:underline hover:text-orange-500 dark:hover:text-amber-50 dark:text-amber-50 cursor-pointer">
                   Chương {index}

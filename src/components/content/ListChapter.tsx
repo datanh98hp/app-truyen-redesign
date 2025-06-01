@@ -5,6 +5,7 @@ export type Chapter = {
   src: string;
   title: string;
   sub: string;
+  slug?: string;
   tags?: string;
   status?: string;
   viewsCount?: number;
@@ -12,21 +13,21 @@ export type Chapter = {
   description?: string;
 };
 
-
 export function ListChapters({ data }: { data?: Chapter[] }) {
   return (
     <div className="h-full flex flex-col items-center">
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-        {
-          data?.map((chapter, index) => (
-            <ChapterItem
-              key={index}
-              src={chapter.src}
-              className=""
-              title={chapter.title}
-              subTitle={chapter.sub}
-            />
-          ))}
+      <div className="grid grid-cols-4 md:grid-cols-7 gap-2">
+        {data?.map((chapter, index) => (
+          <ChapterItem
+            key={index}
+            src={chapter.src}
+            className=""
+            title={chapter.title}
+            subTitle={chapter.sub}
+            slug={chapter.slug}
+            id={index + 1} // id chapter
+          />
+        ))}
       </div>
       <Button
         variant={"outline"}
