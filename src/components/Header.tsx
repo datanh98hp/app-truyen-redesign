@@ -248,8 +248,14 @@ export default function Header() {
                   onMouseEnter={() => toggleDropdown(index)}
                   onMouseLeave={() => toggleDropdown(index)}
                 >
-                  <button className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
-                    <Link href={item.href}>{item.label}</Link>
+                  <div className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
+                    {"subItems" in item ? (
+                      <span className="flex items-center gap-2">
+                        {item.label}
+                      </span>
+                    ) : (
+                      <Link href={item.href}> {item.label}</Link>
+                    )}
                     {item.subItems && (
                       <svg
                         className={`w-4 h-4 transition-transform duration-200 ${
@@ -265,7 +271,7 @@ export default function Header() {
                         />
                       </svg>
                     )}
-                  </button>
+                  </div>
                   {item.subItems && (
                     <div
                       className={`dark:border
@@ -333,12 +339,7 @@ export default function Header() {
               </button>
             </div>
             <div className="lg:hidden flex items-center">
-              {/* <Button
-                variant={"outline"}
-                className="border border-gray-200 rounded-full text-black"
-              >
-                <User2Icon className="" />
-              </Button> */}
+              {/* User Menu */}
               <Menubar className="rounded-full dark:text-white text-black">
                 <MenubarMenu>
                   <MenubarTrigger className="data-[state=open]:bg-transparent">
@@ -377,7 +378,14 @@ export default function Header() {
                   onClick={() => toggleDropdown(index)}
                   className="w-full flex items-center justify-between px-4 py-2 text-white  font-medium"
                 >
-                  {item.label}
+                  {"subItems" in item ? (
+                    <span className="flex items-center gap-2">
+                      {item.label}
+                    </span>
+                  ) : (
+                    <Link href={item.href}> {item.label}</Link>
+                  )}
+
                   {item.subItems && (
                     <svg
                       className={`w-4 h-4 transition-transform duration-200 ${
