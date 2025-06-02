@@ -22,10 +22,10 @@ export default async function Top({
             <p className="font-semibold p-2">Trạng thái</p>
             <div className="flex flex-row gap-2">
               <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Trang thai 11
+                Trang thai 1
               </Button>
               <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Trang thai 22
+                Trang thai 2
               </Button>
             </div>
           </div>

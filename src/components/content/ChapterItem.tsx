@@ -26,7 +26,7 @@ export function ChapterItem({
       alert(`Slug can be null...`);
       return;
     } else {
-      router.push(`/story/${slug}_${Number(id)}`);
+      router.push(`/story/${slug}`);
     }
   };
 

@@ -17,7 +17,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "@radix-ui/react-menubar";
-
+import { useSession } from "next-auth/react"
 interface MenuItem {
   label: string;
   href: string;
@@ -134,6 +134,8 @@ export default function Header() {
     console.log("Searching for:", searchKeyword);
   };
   const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
+  /// get session
+ const { data: session, status } = useSession()
 
   return (
     <header className="shadow-md w-full">
@@ -211,7 +213,7 @@ export default function Header() {
             <Menubar about="Menu" className="border-1 rounded-full">
               <MenubarMenu>
                 <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
-                  <User2Icon className="w-4 h-6" />
+                  <User2Icon className="w-4 h-6" /> <span className="ml-2">{session?.user?.name || "User"}</span>
                 </MenubarTrigger>
                 <MenubarContent className="w-16 h-fit">
                   <Link href="/user">
