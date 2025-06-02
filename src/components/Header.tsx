@@ -17,7 +17,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "@radix-ui/react-menubar";
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react";
 interface MenuItem {
   label: string;
   href: string;
@@ -135,7 +135,7 @@ export default function Header() {
   };
   const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
   /// get session
- const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
   return (
     <header className="shadow-md w-full">
@@ -210,29 +210,37 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-6">
-            <Menubar about="Menu" className="border-1 rounded-full">
-              <MenubarMenu>
-                <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
-                  <User2Icon className="w-4 h-6" /> <span className="ml-2">{session?.user?.name || "User"}</span>
-                </MenubarTrigger>
-                <MenubarContent className="w-16 h-fit">
-                  <Link href="/user">
-                    <MenubarItem>
-                      Thông tin <MenubarShortcut></MenubarShortcut>
+            {session?.user === undefined ? (
+              <Link href="/api/auth/signin">Đăng nhập</Link>
+            ) : (
+              <Menubar about="Menu" className="border-1 rounded-full">
+                <MenubarMenu>
+                  <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
+                    <User2Icon className="w-4 h-6" />
+                    <span className="ml-2">{session?.user?.name}</span>
+                  </MenubarTrigger>
+
+                  <MenubarContent className="w-16 h-fit">
+                    <Link href="/user">
+                      <MenubarItem>
+                        Thông tin <MenubarShortcut></MenubarShortcut>
+                      </MenubarItem>
+                    </Link>
+                    <Link href="/follows">
+                      <MenubarItem>Danh sách theo dõi</MenubarItem>
+                    </Link>
+                    <MenubarSeparator />
+                    <Link href="/history">
+                      <MenubarItem>Lịch sử xem</MenubarItem>
+                    </Link>
+                    <MenubarSeparator />
+                    <MenubarItem onClick={() => signOut()}>
+                      Đăng xuất
                     </MenubarItem>
-                  </Link>
-                  <Link href="/follows">
-                    <MenubarItem>Danh sách theo dõi</MenubarItem>
-                  </Link>
-                  <MenubarSeparator />
-                  <Link href="/history">
-                    <MenubarItem>Lịch sử xem</MenubarItem>
-                  </Link>
-                  <MenubarSeparator />
-                  <MenubarItem>Đăng xuất</MenubarItem>
-                </MenubarContent>
-              </MenubarMenu>
-            </Menubar>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+            )}
           </div>
         </div>
       </nav>
@@ -340,13 +348,18 @@ export default function Header() {
                 )}
               </button>
             </div>
-            <div className="lg:hidden flex items-center">
+            <div className="lg:hidden flex items-center text-black dark:text-white">
               {/* User Menu */}
-              <Menubar className="rounded-full dark:text-white text-black">
+              {session?.user === undefined ? (
+              <Link href="/api/auth/signin">Đăng nhập</Link>
+            ) : (
+              <Menubar about="Menu" className="border-1 rounded-full">
                 <MenubarMenu>
-                  <MenubarTrigger className="data-[state=open]:bg-transparent">
+                  <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
                     <User2Icon className="w-4 h-6" />
+                    <span className="ml-2">{session?.user?.name}</span>
                   </MenubarTrigger>
+
                   <MenubarContent className="w-16 h-fit">
                     <Link href="/user">
                       <MenubarItem>
@@ -361,10 +374,13 @@ export default function Header() {
                       <MenubarItem>Lịch sử xem</MenubarItem>
                     </Link>
                     <MenubarSeparator />
-                    <MenubarItem>Đăng xuất</MenubarItem>
+                    <MenubarItem onClick={() => signOut()}>
+                      Đăng xuất
+                    </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
+            )}
             </div>
           </div>
 
