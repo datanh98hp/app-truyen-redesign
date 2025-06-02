@@ -9,14 +9,12 @@ export function ChapterItem({
   title,
   subTitle,
   slug,
-  id,
   ...props
 }: {
   src?: string;
   className?: string;
   title: string;
   slug?: string;
-  id?: string | number;
   subTitle: string;
 }) {
   const router = useRouter();

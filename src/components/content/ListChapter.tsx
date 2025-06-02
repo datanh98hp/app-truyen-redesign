@@ -25,7 +25,6 @@ export function ListChapters({ data }: { data?: Chapter[] }) {
             title={chapter.title}
             subTitle={chapter.sub}
             slug={chapter.slug}
-            id={index + 1} // id chapter
           />
         ))}
       </div>

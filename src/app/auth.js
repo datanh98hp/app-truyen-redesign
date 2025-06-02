@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const res = await fetch("/api/auth/login", {
           method: "POST",
           body: JSON.stringify(credentials),
@@ -30,7 +30,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   // basePath: "/auth",
   session: { strategy: "jwt" },
   callbacks: {
-    authorized({ request, auth }) {
+    // authorized({ request, auth }) {
       // const { pathname } = request.nextUrl
       // if (pathname === "/middleware-example") return !!auth
       // return true
@@ -44,6 +44,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
     //   // return session
     // },
-  },
+  // },
   // experimental: { enableWebAuthn: true },
 });

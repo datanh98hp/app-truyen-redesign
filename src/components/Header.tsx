@@ -135,7 +135,7 @@ export default function Header() {
   };
   const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
   /// get session
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <header className="shadow-md w-full">

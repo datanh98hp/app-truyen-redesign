@@ -1,10 +1,8 @@
+import SessionWrap from "@/components/providers/session.provider";
+import { ThemeProvider } from "@/components/providers/theme.provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme.provider";
-import { SessionProvider, SessionProviderProps } from "next-auth/react";
-import { Session } from "inspector/promises";
-import SessionWrap from "@/components/providers/session.provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,10 +20,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  session,
 }: Readonly<{
   children: React.ReactNode;
-  session: SessionProviderProps["session"] | null | undefined;
 }>) {
   return (
     <SessionWrap>
