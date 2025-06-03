@@ -62,7 +62,7 @@ const menuItems: MenuItem[] = [
       { label: "Top Tháng", href: "/rankings/monthly" },
       { label: "Tất cả", href: "/rankings/all-time" },
       { label: "Top yêu thích", href: "/rankings/top-favorite" },
-      { label: "Mới nhất", href: "/rankings/newest" },
+      { label: "Mới nhất", href: "/rankings/latest" },
     ],
   },
   {
