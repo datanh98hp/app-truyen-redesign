@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import { ChapterItem } from "./ChapterItem";
 
 export type Chapter = {
