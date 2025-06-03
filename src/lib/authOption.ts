@@ -50,9 +50,7 @@ export const authOptions: NextAuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      if (token) {
-        session.user = token; // Cast to any to avoid type issues
-      }
+      session.user = token as any;
       return session;
     },
   },
