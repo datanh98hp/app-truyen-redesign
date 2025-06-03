@@ -1,4 +1,4 @@
-
+"use client";
 import { ChapterItem } from "./ChapterItem";
 
 export type Chapter = {
@@ -285,6 +285,9 @@ export const chapters: Chapter[] = [
 ];
 
 export function ListChapters({ data }: { data?: Chapter[] }) {
+  // const filterData = useContext(FilterContext)
+
+  // console.log("Filter Data: ", filterData);
   return (
     <div className="h-full flex flex-col items-center">
       <div className="grid grid-cols-4 md:grid-cols-7 gap-2">

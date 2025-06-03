@@ -9,7 +9,8 @@ export default function ClientLayout({
   return (
     <div className="">
       <Header />
-      <main className="max-w-7xl mx-auto px-2">{children}</main>
+      <main className="max-w-7xl mx-auto px-2">
+        {children}</main>
       <Footer />
     </div>
   );

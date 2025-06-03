@@ -1,6 +1,7 @@
+
 import BadgeContent from "@/components/Badge";
+import FilterBar from "@/components/content/FilterBar";
 import { chapters, ListChapters } from "@/components/content/ListChapter";
-import { Button } from "@/components/ui/button";
 import { CalendarSearch } from "lucide-react";
 import Link from "next/link";
 
@@ -10,8 +11,6 @@ export default async function Top({
   params: Promise<{ time_type: string }>;
 }) {
   const { time_type } = await params;
-
-
 
   const titleString = () => {
     switch (time_type) {
@@ -41,7 +40,7 @@ export default async function Top({
         className="py-4 text-xl"
       />
       <div className="w-full">
-        <div className="filter-bar border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
+        {/* <div className="filter-bar border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
           <div className="flex flex-row gap-4 p-2">
             <p className="font-semibold p-2">Trạng thái</p>
             <div className="flex flex-row gap-2">
@@ -64,7 +63,8 @@ export default async function Top({
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
+        <FilterBar />
         <div className="my-2 ">
           {/* <span>Danh sách được hiển thị top lượt đọc trong : {time_type}</span> */}
           <div className="flex flex-col items-center">
