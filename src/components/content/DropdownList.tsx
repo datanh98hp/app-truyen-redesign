@@ -51,7 +51,7 @@ export default function DropdownList({
   data: { value: string | number; label: string }[];
   placeholder?: string;
   inputPlacehoder?: string;
-  onSelectedValue?: (value: string) => void;
+  onSelectedValue?: (value: string|number) => void;
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");

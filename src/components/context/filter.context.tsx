@@ -1,18 +1,32 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 
-type Filter = {
+export type Filter = {
   category: string;
   status: string;
   country: string;
   sortBy: string;
+  max_chapter?: number;
+  includes?: {
+    categories: number[];
+    status: string;
+    country: string;
+    sortBy: string;
+  };
 };
 const initialFilter = {
   status: "",
   country: "",
   category: "",
   sortBy: "latest",
-};
+  max_chapter: 0,
+  includes: {
+    categories: [],
+    status: "",
+    country: "",
+    sortBy: "",
+  },
+} as Filter;
 
 export const FilterContext = createContext({
   filter: initialFilter,

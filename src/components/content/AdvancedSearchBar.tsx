@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
 import DropdownList, { CategoryType } from "./DropdownList";
+import DropdownMultiSelect from "./DropdownMultiSelect";
 
 export type StatusType = {
   value: string;
@@ -14,56 +15,109 @@ export type CountryType = {
   value: string;
   label: string;
 };
+export type MaxChapterOptsType = {
+  value: number;
+  label: string;
+};
 export type SortByType = { value: string; label: string };
-type FilterBarProps = {
+type FilterAdvancedBarProps = {
   status: StatusType[];
   country: CountryType[];
   categories: CategoryType[];
   sortBy: SortByType[];
+  maxChapterOptsion: MaxChapterOptsType[];
 };
 
-export default function FilterBar({
+export default function AdvancedSearchBar({
   categories,
   status,
   country,
   sortBy,
-}: FilterBarProps) {
+  maxChapterOptsion,
+}: FilterAdvancedBarProps) {
   const filterData = useContext(FilterContext);
   console.log("Filter Data:", filterData);
   const { filter, updateFilter } = filterData;
   const handleStatusFilter = (status: string) => {
-    filterData.updateFilter({ ...filter, status });
+    updateFilter({
+      ...filterData.filter,
+      includes: {
+        categories: filterData.filter.includes?.categories ?? [],
+        status,
+        country: filterData.filter.includes?.country ?? "",
+        sortBy: filterData.filter.includes?.sortBy ?? "",
+      },
+    });
 
-    console.log("Status Filter Set:", filter.status);
+    console.log("Status Filter advanced Set:", filter.includes?.status);
   };
   const handleCountryFilter = (country: string) => {
-    filterData.updateFilter({ ...filter, country });
-
-    console.log("Status Filter Set:", filter.country);
+    updateFilter({
+      ...filterData.filter,
+      includes: {
+        categories: filterData.filter.includes?.categories ?? [],
+        status: filterData.filter.includes?.status ?? "",
+        country,
+        sortBy: filterData.filter.includes?.sortBy ?? "",
+      },
+    });
+    console.log("Status Filter advanced Set:", filter.includes?.country);
   };
   const resetFilter = () => {
     filterData.resetFilter();
     console.log("Filter Reset");
   };
-  const handleSortByChange = (value: string) => {
+  const handleSortByChange = (sortBy: string) => {
     // Update the filter with the selected sortBy value
-    updateFilter({ ...filterData.filter, sortBy: value });
+    updateFilter({
+      ...filterData.filter,
+      includes: {
+        categories: filterData.filter.includes?.categories ?? [],
+        status: filterData.filter.includes?.status ?? "",
+        country: filterData.filter.includes?.sortBy ?? "",
+        sortBy,
+      },
+    });
+    console.log("Status Filter advanced Set:", filter.includes?.sortBy);
   };
-  const handleCateChange = (value: string) => {
-    updateFilter({ ...filterData.filter, category: value });
+
+  const handleItemChecked = (value: number) => {
+    // Ensure includes and categories are defined and value is a number
+    const includes = filterData.filter.includes ?? {
+      categories: [],
+      status: filterData.filter.status ?? "",
+      country: filterData.filter.country ?? "",
+    };
+    const numValue = typeof value === "number" ? value : Number(value);
+    if (isNaN(numValue)) return; // Optionally skip if not a valid number
+
+    updateFilter({
+      ...filterData.filter,
+      includes: {
+        ...includes,
+        categories: [...(includes.categories ?? []), numValue],
+        status: includes.status ?? filterData.filter.status ?? "",
+        country: includes.country ?? filterData.filter.country ?? "",
+        sortBy: filterData.filter.includes?.sortBy ?? "",
+      },
+    });
+    console.log("Status Filter advanced is checked category:", filter);
+  };
+  const handleSelectedMaxChapter = (value: number) => {
+    // const maxChapter = parseInt(value, 10);
+    updateFilter({ ...filterData.filter, max_chapter: value });
+    console.log("Status Filter advanced :", filter);
   };
   return (
     <div className="filter-bar relative border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
       <div className="flex flex-row gap-4 p-2">
         <p className="font-semibold p-2">Thể loại</p>
         <div className="flex flex-row gap-2">
-          <DropdownList
+          <DropdownMultiSelect
             data={categories}
-            placeholder="Chọn thể loại"
-            inputPlacehoder="Sắp xếp theo ..."
-            onSelectedValue={(value: string | number) =>
-              handleCateChange(value.toString())
-            }
+            placeholder="Chọn thể loại ..."
+            inputPlacehoder="Chọn loại ..."
+            onItemSelectedValue={(value: number) => handleItemChecked(value)}
           />
         </div>
       </div>
@@ -78,7 +132,7 @@ export default function FilterBar({
               className={cn(
                 "border p-2 rounded-2xl",
                 `${
-                  filterData.filter.status === item.value
+                  filterData.filter.includes?.status === item.value
                     ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
                     : ""
                 }`
@@ -100,7 +154,7 @@ export default function FilterBar({
               className={cn(
                 "border p-2 rounded-2xl",
                 `${
-                  filterData.filter.country === item.value
+                  filterData.filter.includes?.country === item.value
                     ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
                     : ""
                 }`
@@ -109,6 +163,19 @@ export default function FilterBar({
               {item.label}
             </Button>
           ))}
+        </div>
+      </div>
+      <div className="flex flex-row gap-4 p-2">
+        <p className="font-semibold p-2">Thể loại</p>
+        <div className="flex flex-row gap-2">
+          <DropdownList
+            data={maxChapterOptsion}
+            placeholder="Số chương tối đa"
+            inputPlacehoder="Số chương ..."
+            onSelectedValue={(value: string | number) =>
+              handleSelectedMaxChapter(+value.toString())
+            }
+          />
         </div>
       </div>
       <div className="flex flex-row gap-4 p-2">

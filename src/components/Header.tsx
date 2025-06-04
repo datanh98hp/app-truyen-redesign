@@ -75,7 +75,7 @@ const menuItems: MenuItem[] = [
   },
   {
     label: "Tìm kiếm",
-    href: "/",
+    href: "/advanced-search",
   },
   {
     label: "Lịch sử",
