@@ -351,36 +351,36 @@ export default function Header() {
             <div className="lg:hidden flex items-center text-black dark:text-white">
               {/* User Menu */}
               {session?.user === undefined ? (
-              <Link href="/api/auth/signin">Đăng nhập</Link>
-            ) : (
-              <Menubar about="Menu" className="border-1 rounded-full">
-                <MenubarMenu>
-                  <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
-                    <User2Icon className="w-4 h-6" />
-                    <span className="ml-2">{session?.user?.name}</span>
-                  </MenubarTrigger>
+                <Link href="/api/auth/signin">Đăng nhập</Link>
+              ) : (
+                <Menubar about="Menu" className="border-1 rounded-full">
+                  <MenubarMenu>
+                    <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
+                      <User2Icon className="w-4 h-6" />
+                      <span className="ml-2">{session?.user?.name}</span>
+                    </MenubarTrigger>
 
-                  <MenubarContent className="w-16 h-fit">
-                    <Link href="/user">
-                      <MenubarItem>
-                        Thông tin <MenubarShortcut></MenubarShortcut>
+                    <MenubarContent className="w-16 h-fit">
+                      <Link href="/user">
+                        <MenubarItem>
+                          Thông tin <MenubarShortcut></MenubarShortcut>
+                        </MenubarItem>
+                      </Link>
+                      <Link href="/follows">
+                        <MenubarItem>Danh sách theo dõi</MenubarItem>
+                      </Link>
+                      <MenubarSeparator />
+                      <Link href="/history">
+                        <MenubarItem>Lịch sử xem</MenubarItem>
+                      </Link>
+                      <MenubarSeparator />
+                      <MenubarItem onClick={() => signOut()}>
+                        Đăng xuất
                       </MenubarItem>
-                    </Link>
-                    <Link href="/follows">
-                      <MenubarItem>Danh sách theo dõi</MenubarItem>
-                    </Link>
-                    <MenubarSeparator />
-                    <Link href="/history">
-                      <MenubarItem>Lịch sử xem</MenubarItem>
-                    </Link>
-                    <MenubarSeparator />
-                    <MenubarItem onClick={() => signOut()}>
-                      Đăng xuất
-                    </MenubarItem>
-                  </MenubarContent>
-                </MenubarMenu>
-              </Menubar>
-            )}
+                    </MenubarContent>
+                  </MenubarMenu>
+                </Menubar>
+              )}
             </div>
           </div>
 

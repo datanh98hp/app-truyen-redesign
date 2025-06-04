@@ -1,9 +1,21 @@
-
 import BadgeContent from "@/components/Badge";
-import FilterBar from "@/components/content/FilterBar";
+import { categories } from "@/components/content/DropdownList";
+import FilterBar, {
+  CountryType,
+  SortByType,
+  StatusType,
+} from "@/components/content/FilterBar";
 import { chapters, ListChapters } from "@/components/content/ListChapter";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { CalendarSearch } from "lucide-react";
-import Link from "next/link";
 
 export default async function Top({
   params,
@@ -31,6 +43,44 @@ export default async function Top({
     }
   };
 
+  const countries = [
+    {
+      value: "vietnam",
+      label: "Việt Nam",
+    },
+    {
+      value: "china",
+      label: "Trung Quốc",
+    },
+    {
+      value: "korea",
+      label: "Hàn Quốc",
+    },
+  ] as CountryType[];
+  const sortbyList = [
+    {
+      value: "latest",
+      label: "Mới nhất",
+    },
+    {
+      value: "views",
+      label: "Lượt xem",
+    },
+    {
+      value: "favorites",
+      label: "Yêu thích",
+    },
+  ] as SortByType[];
+  const status = [
+    {
+      value: "ongoing",
+      label: "Đang tiến hành",
+    },
+    {
+      value: "completed",
+      label: "Hoàn thành",
+    },
+  ] as StatusType[];
   return (
     <div className="font-semibold font-quicksand">
       <BadgeContent
@@ -64,17 +114,40 @@ export default async function Top({
             </div>
           </div>
         </div> */}
-        <FilterBar />
+        <FilterBar
+          categories={categories}
+          status={status}
+          country={countries}
+          sortBy={sortbyList}
+        />
         <div className="my-2 ">
           {/* <span>Danh sách được hiển thị top lượt đọc trong : {time_type}</span> */}
           <div className="flex flex-col items-center">
             <ListChapters data={chapters} />
-            <Link
-              href="?page=2"
-              className="my-4 p-2 rounded-md bg-amber-600 text-amber-50 dark:bg-gray-800 dark:text-gray-50 hover:opacity-80"
-            >
-              Xem thêm ...
-            </Link>
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#" isActive>
+                    2
+                  </PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationNext href="#" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           </div>
         </div>
       </div>

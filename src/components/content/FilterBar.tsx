@@ -1,75 +1,132 @@
 "use client";
-import React, { useContext } from "react";
-import { Button } from "../ui/button";
-import { FilterContext } from "../context/filter.context";
 import { cn } from "@/lib/utils";
 import { RotateCcwIcon } from "lucide-react";
+import { useContext } from "react";
+import { FilterContext } from "../context/filter.context";
+import { Button } from "../ui/button";
+import DropdownList, { CategoryType } from "./DropdownList";
 
-export default function FilterBar() {
+export type StatusType = {
+  value: string;
+  label: string;
+};
+export type CountryType = {
+  value: string;
+  label: string;
+};
+export type SortByType = { value: string; label: string };
+type FilterBarProps = {
+  status: StatusType[];
+  country: CountryType[];
+  categories: CategoryType[];
+  sortBy: SortByType[];
+};
+
+export default function FilterBar({
+  categories,
+  status,
+  country,
+  sortBy,
+}: FilterBarProps) {
   const filterData = useContext(FilterContext);
   console.log("Filter Data:", filterData);
+  const { filter, updateFilter } = filterData;
   const handleStatusFilter = (status: string) => {
-    filterData.updateFilter({ ...filterData.filter, status });
-    console.log("Status Filter Set:", filterData.filter.status);
+    filterData.updateFilter({ ...filter, status });
+
+    console.log("Status Filter Set:", filter.status);
   };
   const handleCountryFilter = (country: string) => {
-    filterData.updateFilter({ ...filterData.filter, country });
-    console.log("Status Filter Set:", filterData.filter.country);
+    filterData.updateFilter({ ...filter, country });
+
+    console.log("Status Filter Set:", filter.country);
   };
+  // const handleCategoryFilter = (idCate: string) => {
+  //   filterData.updateFilter({ ...filterData.filter, category: idCate });
+
+  //   console.log("Category Filter Set:", filterData.filter.category);
+  // };
   const resetFilter = () => {
     filterData.resetFilter();
     console.log("Filter Reset");
   };
+  const handleSortByChange = (value: string) => {
+    // Update the filter with the selected sortBy value
+    updateFilter({ ...filterData.filter, sortBy: value });
+  };
+  const handleCateChange = (value: string) => {
+    updateFilter({ ...filterData.filter, category: value });
+  };
   return (
     <div className="filter-bar relative border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
       <div className="flex flex-row gap-4 p-2">
+        <p className="font-semibold p-2">Thể loại</p>
+        <div className="flex flex-row gap-2">
+          <DropdownList
+            data={categories}
+            placeholder="Chọn thể loại"
+            inputPlacehoder="Sắp xếp theo ..."
+            onSelectedValue={(value: string) => {
+              handleCateChange(value);
+            }}
+          />
+        </div>
+      </div>
+      <div className="flex flex-row gap-4 p-2">
         <p className="font-semibold p-2">Trạng thái</p>
         <div className="flex flex-row gap-2">
-          <Button
-            variant={"outline"}
-            onClick={() => handleStatusFilter("ongoing")}
-            className={cn(
-              "border p-2 rounded-2xl",
-              `${filterData.filter.status === "ongoing" ? "bg-gray-400" : ""}`
-            )}
-          >
-            Đang tiến hành
-          </Button>
-          <Button
-            variant={"outline"}
-            onClick={() => handleStatusFilter("completed")}
-            className={cn(
-              "border p-2 rounded-2xl",
-              `${filterData.filter.status === "completed" ? "bg-gray-400" : ""}`
-            )}
-          >
-            Hoàn thành
-          </Button>
+          {status.map((item) => (
+            <Button
+              key={item.value}
+              variant={"outline"}
+              onClick={() => handleStatusFilter(item.value)}
+              className={cn(
+                "border p-2 rounded-2xl",
+                `${
+                  filterData.filter.status === item.value
+                    ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
+                    : ""
+                }`
+              )}
+            >
+              {item.label}
+            </Button>
+          ))}
         </div>
       </div>
       <div className="flex flex-row gap-4 p-2">
         <p className="font-semibold p-2">Quốc gia</p>
         <div className="flex flex-row gap-2">
-          <Button
-            variant={"outline"}
-            onClick={() => handleCountryFilter("china")}
-            className={cn(
-              "border p-2 rounded-2xl",
-              `${filterData.filter.country === "china" ? "bg-gray-400" : ""}`
-            )}
-          >
-            Trung Quốc
-          </Button>
-          <Button
-            variant={"outline"}
-            onClick={() => handleCountryFilter("korea")}
-            className={cn(
-              "border p-2 rounded-2xl",
-              `${filterData.filter.country === "korea" ? "bg-gray-400" : ""}`
-            )}
-          >
-            Hàn Quốc
-          </Button>
+          {country.map((item) => (
+            <Button
+              key={item.value}
+              variant={"outline"}
+              onClick={() => handleCountryFilter(item.value)}
+              className={cn(
+                "border p-2 rounded-2xl",
+                `${
+                  filterData.filter.country === item.value
+                    ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
+                    : ""
+                }`
+              )}
+            >
+              {item.label}
+            </Button>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-row gap-4 p-2">
+        <p className="font-semibold p-2">Sắp xếp</p>
+        <div className="flex flex-row gap-2">
+          <DropdownList
+            data={sortBy}
+            placeholder="Chọn sắp xếp"
+            inputPlacehoder="Sắp xếp theo ..."
+            onSelectedValue={(value: string) => {
+              handleSortByChange(value);
+            }}
+          />
         </div>
       </div>
       <div className="absolute right-2 top-2">

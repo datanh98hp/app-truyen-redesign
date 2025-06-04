@@ -1,4 +1,13 @@
 "use client";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 import { ChapterItem } from "./ChapterItem";
 
 export type Chapter = {
@@ -304,7 +313,6 @@ export function ListChapters({ data }: { data?: Chapter[] }) {
         ))}
       </div>
       {/* Xem thêm rankings/newest?page=2*/}
-    
     </div>
   );
 }

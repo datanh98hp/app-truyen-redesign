@@ -2,12 +2,16 @@
 import { createContext, useContext, useState } from "react";
 
 type Filter = {
+  category: string;
   status: string;
   country: string;
+  sortBy: string;
 };
 const initialFilter = {
   status: "",
   country: "",
+  category: "",
+  sortBy: "latest",
 };
 
 export const FilterContext = createContext({
