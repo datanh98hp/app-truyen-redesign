@@ -10,7 +10,7 @@ export default async function StoryChapterPage({
     <div className="font-semibold font-quicksand w-full">
       <h1 className="text-2xl text-center my-4">Chưa có nội dung</h1>
       <p className="text-center text-gray-500">
-        Nội dung sẽ được cập nhật sớm nhất
+        Nội dung sẽ được cập nhật sớm nhất {slug} - {id_chapter}
       </p>
     </div>
   );

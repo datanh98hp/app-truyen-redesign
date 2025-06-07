@@ -53,7 +53,7 @@ async function Category({ params }: { params: Promise<{ id: string }> }) {
     <div className="font-semibold font-quicksand">
       <BadgeContent
         icon={<FlagIcon />}
-        title={`Danh sách truyện theo the loại : ${id}`}
+        title={`Danh sách truyện theo theo loại : ${id}`}
         textColor="#ff2853"
         className="py-4 text-xl"
       />
