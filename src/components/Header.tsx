@@ -18,6 +18,7 @@ import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "@radix-ui/react-menubar";
 import { signOut } from "next-auth/react";
+import { set } from "react-hook-form";
 interface MenuItem {
   label: string;
   href: string;
@@ -65,30 +66,30 @@ const menuItems: MenuItem[] = [
       { label: "Mới nhất", href: "/rankings/latest" },
     ],
   },
-  {
-    label: "Con trai",
-    href: "/",
-  },
-  {
-    label: "Con gái",
-    href: "/",
-  },
+  // {
+  //   label: "Con trai",
+  //   href: "/",
+  // },
+  // {
+  //   label: "Con gái",
+  //   href: "/",
+  // },
   {
     label: "Tìm kiếm",
     href: "/advanced-search",
   },
   {
     label: "Lịch sử",
-    href: "/",
+    href: "/history",
   },
   {
     label: "Theo dõi",
-    href: "/",
+    href: "/follows",
   },
-  {
-    label: "Thảo luận",
-    href: "/",
-  },
+  // {
+  //   label: "Thảo luận",
+  //   href: "/",
+  // },
   {
     label: "Fanpage",
     href: "/",
@@ -255,8 +256,9 @@ export default function Header({ session }: { session?: any }) {
                 <div
                   key={index}
                   className="relative group"
-                  onMouseEnter={() => toggleDropdown(index)}
-                  onMouseLeave={() => toggleDropdown(index)}
+                  onClick={() => toggleDropdown(index)}
+                  // onMouseEnter={() => toggleDropdown(index)}
+                  // onMouseLeave={() => toggleDropdown(index)}
                 >
                   <div className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
                     {"subItems" in item ? (
@@ -284,6 +286,7 @@ export default function Header({ session }: { session?: any }) {
                   </div>
                   {item.subItems && (
                     <div
+                      onClick={() => toggleDropdown(index)}
                       className={`dark:border
       absolute mt-2 w-max dark:bg-[#18191a] dark:text-white bg-gray-100 text-black shadow-lg z-50
       transition-all duration-200 ease-in-out grid grid-cols-8 gap-6
@@ -298,6 +301,7 @@ export default function Header({ session }: { session?: any }) {
                         <Link
                           key={subIndex}
                           href={subItem.href}
+                          onClick={() => toggleDropdown(index)}
                           className="block p-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-700  hover:underline transition-colors"
                         >
                           {subItem.label}
@@ -351,7 +355,12 @@ export default function Header({ session }: { session?: any }) {
             <div className="lg:hidden flex items-center text-black dark:text-white">
               {/* User Menu */}
               {session?.user === undefined ? (
-                <Link href="/api/auth/signin">Đăng nhập</Link>
+                <Link
+                  href="/api/auth/signin"
+                  className="hover:underline border-1 border-gray-600 p-1 rounded-md "
+                >
+                  Đăng nhập
+                </Link>
               ) : (
                 <Menubar about="Menu" className="border-1 rounded-full">
                   <MenubarMenu>
@@ -434,6 +443,10 @@ export default function Header({ session }: { session?: any }) {
                       <Link
                         key={subIndex}
                         href={subItem.href}
+                        onClick={() => {
+                          toggleDropdown(index);
+                          setIsMobileMenuOpen(false);
+                        }}
                         className="block px-1 py-2 text-sm text-wrap  dark:hover:bg-gray-700  hover:underline"
                       >
                         {subItem.label}

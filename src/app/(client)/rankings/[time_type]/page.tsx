@@ -90,30 +90,6 @@ export default async function Top({
         className="py-4 text-xl"
       />
       <div className="w-full">
-        {/* <div className="filter-bar border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
-          <div className="flex flex-row gap-4 p-2">
-            <p className="font-semibold p-2">Trạng thái</p>
-            <div className="flex flex-row gap-2">
-              <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Trang thai 1
-              </Button>
-              <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Trang thai 2
-              </Button>
-            </div>
-          </div>
-          <div className="flex flex-row gap-4 p-2">
-            <p className="font-semibold p-2">Quốc gia</p>
-            <div className="flex flex-row gap-2">
-              <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Trung Quốc
-              </Button>
-              <Button variant={"outline"} className="border p-2 rounded-2xl">
-                Hàn Quốc
-              </Button>
-            </div>
-          </div>
-        </div> */}
         <FilterBar
           categories={categories}
           status={status}

@@ -16,10 +16,10 @@ export type CountryType = {
 };
 export type SortByType = { value: string; label: string };
 type FilterBarProps = {
-  status: StatusType[];
-  country: CountryType[];
-  categories: CategoryType[];
-  sortBy: SortByType[];
+  status?: StatusType[];
+  country?: CountryType[];
+  categories?: CategoryType[];
+  sortBy?: SortByType[];
 };
 
 export default function FilterBar({
@@ -54,76 +54,84 @@ export default function FilterBar({
   };
   return (
     <div className="filter-bar relative border-1 rounded-sm bg-gray-200 dark:bg-gray-700">
-      <div className="flex flex-row gap-4 p-2">
-        <p className="font-semibold p-2">Thể loại</p>
-        <div className="flex flex-row gap-2">
-          <DropdownList
-            data={categories}
-            placeholder="Chọn thể loại"
-            inputPlacehoder="Sắp xếp theo ..."
-            onSelectedValue={(value: string | number) =>
-              handleCateChange(value.toString())
-            }
-          />
+      {categories !== undefined && categories.length > 0 && (
+        <div className="flex flex-row gap-4 p-2">
+          <p className="font-semibold p-2">Thể loại</p>
+          <div className="flex flex-row gap-2">
+            <DropdownList
+              data={categories || []}
+              placeholder="Chọn thể loại"
+              inputPlacehoder="Sắp xếp theo ..."
+              onSelectedValue={(value: string | number) =>
+                handleCateChange(value.toString())
+              }
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row gap-4 p-2">
-        <p className="font-semibold p-2">Trạng thái</p>
-        <div className="flex flex-row gap-2">
-          {status.map((item) => (
-            <Button
-              key={item.value}
-              variant={"outline"}
-              onClick={() => handleStatusFilter(item.value)}
-              className={cn(
-                "border p-2 rounded-2xl",
-                `${
-                  filterData.filter.status === item.value
-                    ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
-                    : ""
-                }`
-              )}
-            >
-              {item.label}
-            </Button>
-          ))}
+      )}
+      {status !== undefined && status.length > 0 && (
+        <div className="flex flex-row gap-4 p-2">
+          <p className="font-semibold p-2">Trạng thái</p>
+          <div className="flex flex-row gap-2">
+            {status?.map((item) => (
+              <Button
+                key={item.value}
+                variant={"outline"}
+                onClick={() => handleStatusFilter(item.value)}
+                className={cn(
+                  "border p-2 rounded-2xl",
+                  `${
+                    filterData.filter.status === item.value
+                      ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
+                      : ""
+                  }`
+                )}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row gap-4 p-2">
-        <p className="font-semibold p-2">Quốc gia</p>
-        <div className="flex flex-row gap-2">
-          {country.map((item) => (
-            <Button
-              key={item.value}
-              variant={"outline"}
-              onClick={() => handleCountryFilter(item.value)}
-              className={cn(
-                "border p-2 rounded-2xl",
-                `${
-                  filterData.filter.country === item.value
-                    ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
-                    : ""
-                }`
-              )}
-            >
-              {item.label}
-            </Button>
-          ))}
+      )}
+      {country !== undefined && country.length > 0 && (
+        <div className="flex flex-row gap-4 p-2">
+          <p className="font-semibold p-2">Quốc gia</p>
+          <div className="flex flex-row gap-2">
+            {country?.map((item) => (
+              <Button
+                key={item.value}
+                variant={"outline"}
+                onClick={() => handleCountryFilter(item.value)}
+                className={cn(
+                  "border p-2 rounded-2xl",
+                  `${
+                    filterData.filter.country === item.value
+                      ? "bg-gray-400 dark:bg-amber-100 dark:text-black"
+                      : ""
+                  }`
+                )}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row gap-4 p-2">
-        <p className="font-semibold p-2">Sắp xếp</p>
-        <div className="flex flex-row gap-2">
-          <DropdownList
-            data={sortBy}
-            placeholder="Chọn sắp xếp"
-            inputPlacehoder="Sắp xếp theo ..."
-            onSelectedValue={(value: string | number) => {
-              handleSortByChange(value.toString());
-            }}
-          />
+      )}
+      {sortBy !== undefined && sortBy.length > 0 && (
+        <div className="flex flex-row gap-4 p-2">
+          <p className="font-semibold p-2">Sắp xếp</p>
+          <div className="flex flex-row gap-2">
+            <DropdownList
+              data={sortBy || []}
+              placeholder="Chọn sắp xếp"
+              inputPlacehoder="Sắp xếp theo ..."
+              onSelectedValue={(value: string | number) => {
+                handleSortByChange(value.toString());
+              }}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="absolute right-2 top-2">
         <Button
           variant={"outline"}
