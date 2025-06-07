@@ -17,7 +17,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "@radix-ui/react-menubar";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 interface MenuItem {
   label: string;
   href: string;
@@ -95,7 +95,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export default function Header() {
+export default function Header({ session }: { session?: any }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<number[]>([]);
   //search input
@@ -135,8 +135,8 @@ export default function Header() {
   };
   const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
   /// get session
-  const { data: session } = useSession();
-
+  // const { data: session } = useSession();
+  // console.log("session: ", session?.user);
   return (
     <header className="shadow-md w-full">
       <nav className="max-w-7xl mx-auto">
@@ -217,7 +217,7 @@ export default function Header() {
                 <MenubarMenu>
                   <MenubarTrigger className="rounded-full data-[state=open]:bg-transparent ">
                     <User2Icon className="w-4 h-6" />
-                    <span className="ml-2">{session?.user?.name}</span>
+                    <span className="ml-2">{session?.user.name}</span>
                   </MenubarTrigger>
 
                   <MenubarContent className="w-16 h-fit">
