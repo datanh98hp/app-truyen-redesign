@@ -1,5 +1,10 @@
 import BadgeContent from "@/components/Badge";
-import { Badge } from "@/components/ui/badge";
+import { CommentForm } from "@/components/content/comment/CommentForm";
+import {
+  CommentType,
+  ItemComment,
+  userdata,
+} from "@/components/content/comment/ItemComment";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -12,10 +17,60 @@ import {
   ThumbsUpIcon,
   UserIcon,
 } from "lucide-react";
-import { Comme } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
+
+const commentsData = [
+  {
+    id: 1,
+    content: "Comment 1",
+    like: 10,
+    user: {
+      id: 1,
+      name: "Nguyen Van A",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+      level: 1,
+    },
+    time: "2025-05-20T00:00:00.000Z",
+  },
+  {
+    id: 2,
+    content: "Comment 2",
+    like: 10,
+    user: {
+      id: 1,
+      name: "Nguyen Van A",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+      level: 1,
+    },
+    time: "2025-05-01T00:00:00.000Z",
+  },
+  {
+    id: 3,
+    content: "Comment 3",
+    like: 10,
+    user: {
+      id: 1,
+      name: "Nguyen Van A",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+      level: 1,
+    },
+    time: "2025-05-01T00:00:00.000Z",
+  },
+  {
+    id: 4,
+    content: "Comment 4",
+    like: 10,
+    user: {
+      id: 1,
+      name: "Nguyen Van A",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+      level: 1,
+    },
+    time: "2025-05-01T00:00:00.000Z",
+  },
+] as CommentType[];
 export default async function StoryPage({
   params,
 }: {
@@ -23,11 +78,11 @@ export default async function StoryPage({
 }) {
   const { slug } = await params; // chua id cua truyen
   ///   lay danh sach cac chapter cua truyen theo id truyện
-  console.log("slug:", slug);
+  // console.log("slug:", slug);
   const id = slug.split("-").reverse()[0];
   const slugContent = slug.slice(0, slug.lastIndexOf("-"));
-  console.log("id:", id);
-  console.log("slug:", slugContent);
+  // console.log("id:", id);
+  // console.log("slug:", slugContent);
   /// get detail story
 
   return (
@@ -149,6 +204,8 @@ export default async function StoryPage({
             lực và giàu có bậc nhất, trở thành mộng tưởng của tất cả mọi nam
             nhân! Nhưng…
           </div>
+        </div>
+        <div className="mt-10 mb-20">
           <BadgeContent
             icon={<InfoIcon />}
             title="Danh sách chương"
@@ -178,6 +235,11 @@ export default async function StoryPage({
             className="my-4"
             textColor="#ff2853"
           />
+          <CommentForm user={userdata}/>
+
+          {commentsData.map((item, index) => (
+            <ItemComment key={index} comment={item} />
+          ))}
         </div>
       </div>
     </div>
