@@ -20,7 +20,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-
 const commentsData = [
   {
     id: 1,
@@ -71,29 +70,84 @@ const commentsData = [
     time: "2025-05-01T00:00:00.000Z",
   },
 ] as CommentType[];
+const data_details = {
+  id: 1,
+  thumb: "", // hinh anh cua chapter
+  author: "admin",
+  title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
+  sub: "100 chapter", // chapter moi nhat cua truyen / tong so chuong
+  categories: [], // thoi gian cap nhat chapter
+  status: {
+    value: "complete",
+    label: "Hoaàn Thành",
+  },
+  viewsCount: 0,
+  folowersCount: 0,
+  description: "",
+  slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat_1", // slug = slug + storyId
+  chapters: [
+    {
+      id: 1,
+      thumb: "",
+      sub: "chapter 1",
+      title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
+      slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat_1",
+      content: "Content of chapter is markdown / html / pdf",
+      createAt: "2025-06-01",
+    },
+    {
+      id: 22,
+      thumb: "",
+      title: "Thiên Kim Toàn Năng Bá Khí Ngút Trời",
+      sub: "chapter 1",
+      slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
+      content: "Content of chapter is markdown / html / pdf",
+      createAt: "2025-06-01",
+    },
+  ],
+};
+// const listChapters = [
+//   {
+//     id: "1",
+//     thumb: "",
+//     title: "Thiên Kim Toàn Năng Bá Khí Ngút Trời",
+//     sub: "chapter 1",
+//     slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
+//     content: "Content of chapter is markdown / html / pdf",
+//   },
+// ];
+
 export default async function StoryPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id_story: string }>;
 }) {
-  const { slug } = await params; // chua id cua truyen
+  const { id_story } = await params; // chua id cua truyen
   ///   lay danh sach cac chapter cua truyen theo id truyện
   // console.log("slug:", slug);
-  const id = slug.split("-").reverse()[0];
-  const slugContent = slug.slice(0, slug.lastIndexOf("-"));
+
   // console.log("id:", id);
   // console.log("slug:", slugContent);
   /// get detail story
-
+  const detailStory = null as any;
   return (
-    <div className="font-semibold font-quicksand w-full border">
-      <div>
+    <div className="font-semibold font-quicksand w-full mt-10 rounded-sm border dark:bg-gray-900 bg-gray-200">
+      {!detailStory == null && (
+        <div>
+          <h1 className="text-2xl text-center my-4">{"Chưa có nội dung"}</h1>
+          <p className="text-center text-gray-500">
+            Nội dung sẽ được cập nhật sớm nhất - {id_story}
+          </p>
+        </div>
+      )}
+      {/* <div>
         <h1 className="text-2xl text-center my-4">Chưa có nội dung</h1>
         <p className="text-center text-gray-500">
           Nội dung sẽ được cập nhật sớm nhất - {id} - {slugContent}
         </p>
-      </div>
-      <div className="">
+      </div> */}
+
+      <div className="  m-2">
         <div className=" lg:col-span-2 lg:grid lg:grid-cols-6 flex flex-col items-center justify-center">
           <Image
             src="/assets/thumb.png"
@@ -214,19 +268,16 @@ export default async function StoryPage({
           />
           <ScrollArea className="h-[400px] w-full rounded-md border">
             <div className="w-full my-2">
-              {Array.from({ length: 30 }).map((_, index) => (
-                <div
+              {data_details.chapters.map((chapter, index) => (
+                <Link
+                  href={`/story/${id_story}/${chapter.slug}-${chapter.id}`}
                   key={index}
                   className="border-b-1 pb-2 border-gray-700 mx-4 flex flex-row items-center justify-between"
                 >
-                  <p>Chapter {index + 1}</p>
-                  <p>08/06/2025</p>
-                </div>
+                  <p> {chapter.sub}</p>
+                  <p>{chapter.createAt}</p>
+                </Link>
               ))}
-              {/* <div className="border-b-1 pb-2 border-gray-700 mx-4 flex flex-row justify-between">
-                <p>Chapter 1</p>
-                <p>08/06/2025</p>
-              </div> */}
             </div>
           </ScrollArea>
           <BadgeContent
@@ -235,7 +286,7 @@ export default async function StoryPage({
             className="my-4"
             textColor="#ff2853"
           />
-          <CommentForm user={userdata}/>
+          <CommentForm user={userdata} />
 
           {commentsData.map((item, index) => (
             <ItemComment key={index} comment={item} />

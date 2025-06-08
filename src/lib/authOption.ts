@@ -8,38 +8,44 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
-    // CredentialsProvider({
-    //   name: "Credentials",
-    //   credentials: {
-    //     email: { label: "email", type: "text" },
-    //     password: { label: "Password", type: "password" },
-    //   },
-    //   authorize: async (credentials) => {
-    //     console.log("credentials check  from credentials: ", credentials);
-    //     const email = credentials?.email;
-    //     console.log("email check  : ", email);
-    //     // const res = await fetch("/api/auth/signin", {
-    //     //   method: "POST",
-    //     //   body: JSON.stringify(credentials),
-    //     //   headers: { "Content-Type": "application/json" },
-    //     // });
-    //     // const user = await res.json();
-    //     const user = {
-    //       ...credentials,
-    //       name: "user",
-    //       id: "1",
-    //     };
-    //     console.log("credentials check  user: ", user);
-    //     if (user) {
-    //       return user; // If no user found, return null
-    //     }
-    //     // // // If no error and we have user data, return it
-    //     // // if (res.ok && user) {
-    //     // //   return user;
-    //     // // }
-    //     return null;
-    //   },
-    // }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        // console.log("credentials check  from credentials: ", credentials);
+        if (
+          credentials?.email.trim() === "" ||
+          credentials?.password.trim() === ""
+        ) {
+          throw new Error("Email and password are required");
+        }
+        //console.log("email check  : ", email);
+        console.log("process.env.NEXTAUTH_URL", process.env.API_URL);
+        const res = await fetch(`${process.env.API_URL}/login`, {
+          method: "POST",
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const user = await res.json();
+        // const user = {
+        //   ...credentials,
+        //   name: "user",
+        //   id: "1",
+        // };
+        console.log("credentials check  user: ", user);
+        if (res.ok && user) {
+          return user;
+        }
+        // If no user found, return null
+        return null;
+      },
+    }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,

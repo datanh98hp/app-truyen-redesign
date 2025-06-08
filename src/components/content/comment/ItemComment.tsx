@@ -34,11 +34,11 @@ export function ItemComment({ comment }: { comment: CommentType }) {
 
   console.log();
   return (
-    <div className="m-2 p-2 border h-full rounded-md">
+    <div className="m-2 p-2  dark:border-gray-200 border-gray-600 bg-white dark:bg-gray-800 h-full rounded-md">
       <div className="flex flex-row gap-3 rounded-md">
         <Avatar className="">
           <AvatarImage
-            src="https://github.com/shadcn.png"
+            src={comment.user.image}
             height={60}
             width={60}
             className=""
@@ -52,19 +52,19 @@ export function ItemComment({ comment }: { comment: CommentType }) {
               {comment.user.name}
             </span>
           </p>
-          <div className="border-t-2">{comment.content}</div>
+          <div className="border-t-2 font-light">{comment.content}</div>
         </div>
       </div>
       <div className=" flex flex-row gap-2 mx-11 my-3 font-light">
         <div className="flex flex-row">
-          <ThumbsUp /> <span className="mx-2 ">{comment.like} Like</span>
+          <ThumbsUp className="cursor-pointer" /> <span className="mx-2 ">{comment.like} Like</span>
         </div>
         <div className="flex flex-row" onClick={handleToggleSubComment}>
-          <MessageCircleMore />{" "}
+          <MessageCircleMore className="cursor-pointer" />{" "}
           <span className="mx-2">{comment.cmt} Bnh luận</span>
         </div>
         <div className="flex flex-row">
-          <TimerResetIcon /> <span className="mx-2">{comment.time}</span>
+          <TimerResetIcon className="cursor-pointer" /> <span className="mx-2">{comment.time}</span>
         </div>
       </div>
       {isShowSubComment && (

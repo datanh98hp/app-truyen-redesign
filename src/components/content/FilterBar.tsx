@@ -4,23 +4,10 @@ import { RotateCcwIcon } from "lucide-react";
 import { useContext } from "react";
 import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
-import DropdownList, { CategoryType } from "./DropdownList";
+import DropdownList from "./DropdownList";
+import { FilterBarProps } from "../types/types";
 
-export type StatusType = {
-  value: string;
-  label: string;
-};
-export type CountryType = {
-  value: string;
-  label: string;
-};
-export type SortByType = { value: string; label: string };
-type FilterBarProps = {
-  status?: StatusType[];
-  country?: CountryType[];
-  categories?: CategoryType[];
-  sortBy?: SortByType[];
-};
+
 
 export default function FilterBar({
   categories,

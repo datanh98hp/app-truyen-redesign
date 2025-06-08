@@ -8,11 +8,11 @@ export default async function ClientLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession();
+  console.log(`session layout : `, session);
   return (
     <div className="">
-      <Header session={session} />
-      <main className="max-w-7xl mx-auto px-2">
-        {children}</main>
+      <Header session_={session} />
+      <main className="max-w-7xl mx-auto px-2">{children}</main>
       <Footer />
     </div>
   );

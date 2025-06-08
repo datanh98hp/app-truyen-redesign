@@ -51,14 +51,14 @@ export function CommentForm({ user }: { user: UserType }) {
       action={handleSubmit}
       className="flex flex-row gap-4 mx-2"
     >
-      <div className="flex-grow ">
+      <div className="flex-grow bg-white">
         <Textarea
           name="comment"
           placeholder="Nhập bình luận..."
           cols={30}
           rows={4}
           required
-          className="border-0 rounded-xs focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="border-1 dark:border-0 rounded-xs  dark:focus:ring-0 dark:focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
         />
       </div>
       <div className="mr-2">

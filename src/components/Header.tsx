@@ -8,7 +8,9 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { Separator } from "@radix-ui/react-menubar";
 import { MoonIcon, SearchIcon, SunIcon, User2Icon } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,9 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
-import { Separator } from "@radix-ui/react-menubar";
-import { signOut } from "next-auth/react";
-import { set } from "react-hook-form";
+
 interface MenuItem {
   label: string;
   href: string;
@@ -96,7 +96,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export default function Header({ session }: { session?: any }) {
+export default function Header({ session_ }: { session_?: any }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<number[]>([]);
   //search input
@@ -120,6 +120,7 @@ export default function Header({ session }: { session?: any }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    
   }, []);
   const toggleDropdown = (index: number) => {
     setOpenDropdowns((prev) =>
@@ -136,7 +137,7 @@ export default function Header({ session }: { session?: any }) {
   };
   const tags = searchKeyword.split(" ").map((v, i) => `Result.${v}-index-${i}`);
   /// get session
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   // console.log("session: ", session?.user);
   return (
     <header className="shadow-md w-full">
@@ -402,7 +403,12 @@ export default function Header({ session }: { session?: any }) {
             {menuItems.map((item, index) => (
               <div key={index} className="py-1">
                 <button
-                  onClick={() => toggleDropdown(index)}
+                  onClick={() => {
+                    toggleDropdown(index);
+                    if (! ("subItems" in item)) {
+                      setIsMobileMenuOpen(false);
+                    }
+                  }}
                   className="w-full flex items-center justify-between px-4 py-2 text-white  font-medium"
                 >
                   {"subItems" in item ? (

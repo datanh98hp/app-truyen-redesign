@@ -3,12 +3,9 @@ import AdvancedSearchBar, {
     MaxChapterOptsType,
 } from "@/components/content/AdvancedSearchBar";
 import { categoriesList } from "@/components/content/DropdownMultiSelect";
-import {
-    CountryType,
-    SortByType,
-    StatusType,
-} from "@/components/content/FilterBar";
-import { chapters, ListChapters } from "@/components/content/ListChapter";
+
+import { stories, ListStory } from "@/components/content/ListStories";
+import { CountryType, SortByType, StatusType } from "@/components/types/types";
 import {
     Pagination,
     PaginationContent,
@@ -126,7 +123,7 @@ export default async function Top({
         <div className="my-2 ">
           {/* <span>Danh sách được hiển thị top lượt đọc trong : {time_type}</span> */}
           <div className="flex flex-col items-center">
-            <ListChapters data={chapters} />
+            <ListStory data={stories} />
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

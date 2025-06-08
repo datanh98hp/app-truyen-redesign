@@ -4,8 +4,9 @@ import { RotateCcwIcon } from "lucide-react";
 import { useContext } from "react";
 import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
-import DropdownList, { CategoryType } from "./DropdownList";
+import DropdownList from "./DropdownList";
 import DropdownMultiSelect from "./DropdownMultiSelect";
+import { CategoryType } from "../types/types";
 
 export type StatusType = {
   value: string;

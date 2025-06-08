@@ -16,10 +16,8 @@ import {
 import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown } from "lucide-react";
 import React from "react";
-export type CategoryType = {
-  value: number | string;
-  label: string;
-};
+import { CategoryType } from "../types/types";
+
 export const categories = [
   {
     value: "11",

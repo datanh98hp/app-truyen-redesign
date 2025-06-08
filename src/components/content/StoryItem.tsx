@@ -3,28 +3,28 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export function ChapterItem({
+export function StoryItem({
   src,
   className,
   title,
   subTitle,
-  slug,
+  id,
   ...props
 }: {
   src?: string;
   className?: string;
   title: string;
-  slug?: string;
+  id?: string;
   subTitle: string;
 }) {
   const router = useRouter();
   const handleClick = () => {
     // Handle click event, e.g., navigate to chapter details page
-    if (!slug) {
+    if (!id) {
       alert(`Slug can be null...`);
       return;
     } else {
-      router.push(`/story/${slug}`);
+      router.push(`/story/${id}`);
     }
   };
 

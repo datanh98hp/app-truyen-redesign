@@ -5,7 +5,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { stories } from "./ListStories";
+
 export function SwipperContent() {
+  //get latest stories from api
+
+  const data = [];
+  const handleOnClickItem = () => {};
   return (
     <div className="mx-auto md:p-0 h-fit">
       <Swiper
@@ -39,9 +45,9 @@ export function SwipperContent() {
         modules={[Navigation, Autoplay, Pagination]}
         className="mySwiper"
       >
-        {Array.from({ length: 10 }).map((_, index) => (
+        {stories.map((item, index) => (
           <SwiperSlide key={index} className="">
-            <div className="h-full chapter-item">
+            <div className="h-full chapter-item" onClick={handleOnClickItem}>
               <Image
                 src="/assets/thumb.png"
                 alt="image"
@@ -52,10 +58,10 @@ export function SwipperContent() {
               />
               <div className="">
                 <p className="p-2 font-semibold font-quicksand truncate hover:underline hover:text-orange-500  dark:text-amber-50 cursor-pointer">
-                  title asfjpj fpaspf kfi0afafo jfofjoafw jofj-fj-afjf sv f è- {index}
+                  {item.title}
                 </p>
                 <p className="font-semibold font-quicksand text-center hover:underline hover:text-orange-500 dark:hover:text-amber-50 dark:text-amber-50 cursor-pointer">
-                  Chương {index}
+                  {item.chapters?.length} chapter
                 </p>
               </div>
             </div>

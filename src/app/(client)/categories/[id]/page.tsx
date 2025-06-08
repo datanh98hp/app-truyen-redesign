@@ -1,11 +1,9 @@
 import BadgeContent from "@/components/Badge";
 import { categories } from "@/components/content/DropdownList";
-import FilterBar, {
-  CountryType,
-  SortByType,
-  StatusType,
-} from "@/components/content/FilterBar";
-import { chapters, ListChapters } from "@/components/content/ListChapter";
+import FilterBar from "@/components/content/FilterBar";
+
+import { stories, ListStory } from "@/components/content/ListStories";
+import { CountryType, SortByType, StatusType } from "@/components/types/types";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { FlagIcon } from "lucide-react";
 
@@ -67,7 +65,7 @@ async function Category({ params }: { params: Promise<{ id: string }> }) {
         <div className="my-2 ">
           {/* <span>Danh sách được hiển thị top lượt đọc trong : {time_type}</span> */}
           <div className="flex flex-col items-center">
-            <ListChapters data={chapters} />
+            <ListStory data={stories} />
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
