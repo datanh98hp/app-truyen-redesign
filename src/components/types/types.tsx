@@ -40,4 +40,5 @@ export type Story = {
   folowersCount?: number;
   description?: string;
   chapters?: ChapterType[];
+  tags?: string[]
 };

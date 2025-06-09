@@ -9,6 +9,7 @@ export function StoryItem({
   title,
   subTitle,
   id,
+  slug,
   ...props
 }: {
   src?: string;
@@ -16,6 +17,7 @@ export function StoryItem({
   title: string;
   id?: string;
   subTitle: string;
+  slug?: string;
 }) {
   const router = useRouter();
   const handleClick = () => {
@@ -24,7 +26,7 @@ export function StoryItem({
       alert(`Slug can be null...`);
       return;
     } else {
-      router.push(`/story/${id}`);
+      router.push(`/story/${slug}-${id}`);
     }
   };
 

@@ -17,22 +17,22 @@ export const stories: Story[] = [
     viewsCount: 0,
     folowersCount: 0,
     description: "",
-    slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat_1", // slug = slug + storyId
+    slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
     chapters: [
       {
         id: 1,
         thumb: "",
         sub: "chapter 1",
-        title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
-        slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat_1",
+        title: "Chapter 1",
+        slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
         content: "Content of chapter is markdown / html / pdf",
         createAt: "2025-06-01",
       },
       {
         id: 22,
         thumb: "",
-        title: "Thiên Kim Toàn Năng Bá Khí Ngút Trời",
-        sub: "chapter 1",
+        title: "Chapter 2",
+        sub: "chapter 2",
         slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
         content: "Content of chapter is markdown / html / pdf",
         createAt: "2025-06-01",
@@ -159,6 +159,7 @@ export function ListStory({ data }: { data?: Story[] }) {
             title={story.title}
             subTitle={story.sub}
             id={`${story.id}`}
+            slug={story.slug}
           />
         ))}
       </div>

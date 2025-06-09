@@ -90,17 +90,17 @@ const data_details = {
       id: 1,
       thumb: "",
       sub: "chapter 1",
-      title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
-      slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat_1",
+      title: "Chapter 1",
+      slug: "chapter_1",
       content: "Content of chapter is markdown / html / pdf",
       createAt: "2025-06-01",
     },
     {
-      id: 22,
+      id: 2,
       thumb: "",
       title: "Thiên Kim Toàn Năng Bá Khí Ngút Trời",
-      sub: "chapter 1",
-      slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
+      sub: "chapter 2",
+      slug: "chapter_2",
       content: "Content of chapter is markdown / html / pdf",
       createAt: "2025-06-01",
     },
@@ -120,13 +120,13 @@ const data_details = {
 export default async function StoryPage({
   params,
 }: {
-  params: Promise<{ id_story: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id_story } = await params; // chua id cua truyen
+  const { slug } = await params; // chua id cua truyen
   ///   lay danh sach cac chapter cua truyen theo id truyện
-  // console.log("slug:", slug);
-
-  // console.log("id:", id);
+  console.log("slug:", slug);
+  const id_story = slug.split("-").reverse()[0];
+  console.log("id:", id_story);
   // console.log("slug:", slugContent);
   /// get detail story
   const detailStory = null as any;
@@ -136,7 +136,7 @@ export default async function StoryPage({
         <div>
           <h1 className="text-2xl text-center my-4">{"Chưa có nội dung"}</h1>
           <p className="text-center text-gray-500">
-            Nội dung sẽ được cập nhật sớm nhất - {id_story}
+            Nội dung sẽ được cập nhật sớm nhất - {slug}
           </p>
         </div>
       )}
@@ -270,7 +270,7 @@ export default async function StoryPage({
             <div className="w-full my-2">
               {data_details.chapters.map((chapter, index) => (
                 <Link
-                  href={`/story/${id_story}/${chapter.slug}-${chapter.id}`}
+                  href={`/story/${slug}/${chapter.slug}-${chapter.id}`}
                   key={index}
                   className="border-b-1 pb-2 border-gray-700 mx-4 flex flex-row items-center justify-between"
                 >
