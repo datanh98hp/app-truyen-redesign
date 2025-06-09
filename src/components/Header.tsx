@@ -120,7 +120,6 @@ export default function Header({ session_ }: { session_?: any }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-    
   }, []);
   const toggleDropdown = (index: number) => {
     setOpenDropdowns((prev) =>
@@ -257,9 +256,9 @@ export default function Header({ session_ }: { session_?: any }) {
                 <div
                   key={index}
                   className="relative group"
-                  onClick={() => toggleDropdown(index)}
-                  // onMouseEnter={() => toggleDropdown(index)}
-                  // onMouseLeave={() => toggleDropdown(index)}
+                  // onClick={() => toggleDropdown(index)}
+                  onMouseEnter={() => toggleDropdown(index)}
+                  onMouseLeave={() => toggleDropdown(index)}
                 >
                   <div className="px-2 py-2 dark:bg-[#18191a] dark:text-white hover:underline inline-flex items-center gap-1">
                     {"subItems" in item ? (
@@ -405,7 +404,7 @@ export default function Header({ session_ }: { session_?: any }) {
                 <button
                   onClick={() => {
                     toggleDropdown(index);
-                    if (! ("subItems" in item)) {
+                    if (!("subItems" in item)) {
                       setIsMobileMenuOpen(false);
                     }
                   }}

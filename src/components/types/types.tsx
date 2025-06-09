@@ -37,8 +37,9 @@ export type Story = {
   categories?: CategoryType[];
   status?: StatusType;
   viewsCount?: number;
+  likeCount?: number;
   folowersCount?: number;
   description?: string;
   chapters?: ChapterType[];
-  tags?: string[]
+  tag?: string[] /// tag : viewsCount > 50 => "hot"
 };

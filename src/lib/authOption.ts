@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email and password are required");
         }
         //console.log("email check  : ", email);
-        console.log("process.env.NEXTAUTH_URL", process.env.API_URL);
+        //console.log("process.env.API_URL", process.env.API_URL);
         const res = await fetch(`${process.env.API_URL}/login`, {
           method: "POST",
           body: JSON.stringify({
@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
         //   name: "user",
         //   id: "1",
         // };
-        console.log("credentials check  user: ", user);
+        // console.log("credentials check  user: ", user);
         if (res.ok && user) {
           return user;
         }

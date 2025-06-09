@@ -31,7 +31,7 @@ export default async function StoryChapterPage({
   const data_details = null as any;
   return (
     <div className="relative min-h-screen">
-      <div className="font-semibold font-quicksand w-full mt-10 rounded-sm border dark:bg-gray-900 bg-gray-200">
+      <div className="font-semibold font-quicksand w-full  rounded-sm border dark:bg-gray-900 bg-gray-200">
         <span id="top"></span>
         {!data_details == null && (
           <div className="font-semibold font-quicksand w-full">
@@ -87,7 +87,7 @@ export default async function StoryChapterPage({
               Chương sau
             </Link>
           </div>
-          <div className="my-2">
+          <div className="my-2 font-quicksand">
             <ScrollArea className="h-[800px] w-fit rounded-md border-black">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
               dictum nulla id nisi aliquet, ac sodales lacus iaculis. Aliquam et

@@ -8,7 +8,7 @@ export default async function ClientLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession();
-  console.log(`session layout : `, session);
+  // console.log(`session layout : `, session);
   return (
     <div className="">
       <Header session_={session} />
