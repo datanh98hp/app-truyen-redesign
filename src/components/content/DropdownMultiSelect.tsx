@@ -1,120 +1,130 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronsUpDown } from "lucide-react";
 import React from "react";
 import { Checkbox } from "../ui/checkbox";
-export type CategoryType = {
-  value: number | string;
-  label: string;
-};
-export const categoriesList = [
-  {
-    value: 1,
-    label: "Action",
-  },
-  {
-    value: 2,
-    label: "Horror",
-  },
-  {
-    value: 3,
-    label: "Drama",
-  },
-  {
-    value: 4,
-    label: "School Life",
-  },
-  {
-    value: 5,
-    label: "Ngôn Tình",
-  },
-  {
-    value: 6,
-    label: "Mystery",
-  },
-  {
-    value: 7,
-    label: "Romance",
-  },
-  {
-    value: 8,
-    label: "Comedy",
-  },
-  {
-    value: 9,
-    label: "Fantasy",
-  },
-  {
-    value: 10,
-    label: "Adventure",
-  },
-  {
-    value: 11,
-    label: "Sci-Fi",
-  },
-  {
-    value: 12,
-    label: "Supernatural",
-  },
-  {
-    value: 13,
-    label: "Slice of Life",
-  },
-  {
-    value: 14,
-    label: "Sports",
-  },
-  {
-    value: 15,
-    label: "Music",
-  },
-  {
-    value: 16,
-    label: "Historical",
-  },
-  {
-    value: 17,
-    label: "Mecha",
-  },
-  {
-    value: 18,
-    label: "Adventure",
-  },
-  {
-    value: 19,
-    label: "Psychological",
-  },
-  {
-    value: 20,
-    label: "Thriller",
-  },
-] as CategoryType[];
+import { CategoryType } from "../types/types";
+
+// export const categoriesList = [
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Action",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Adventure",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Comedy",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Drama",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Fantasy",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Horror",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Romance",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Thriller",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Western",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+//   {
+//     id: Math.ceil(Math.random() * 100),
+//     title: "Romantic",
+//     country: {
+//       value: "china",
+//       label: "Trung Quốc",
+//     },
+//     status: "active",
+//   },
+// ] as CategoryType[];
+
 export default function DropdownMultiSelect({
   data,
   placeholder,
   inputPlacehoder,
   onItemSelectedValue,
 }: {
-  data: { value: string | number; label: string }[];
+  data: any[];
   placeholder?: string;
   inputPlacehoder?: string;
   onItemSelectedValue?: (value: number) => void;
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -124,9 +134,7 @@ export default function DropdownMultiSelect({
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? data?.find((item) => item.value === value)?.label
-            : placeholder}
+          {value ? data?.find((item) => item.id === value)?.title : placeholder}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -138,7 +146,7 @@ export default function DropdownMultiSelect({
             <CommandGroup>
               {data.map((item) => (
                 <CommandItem
-                  key={item.value}
+                  key={item.id}
                   //   value={item.value.toString()}
                   onSelect={(currentValue) => {
                     // setValue(currentValue === value ? "" : currentValue);
@@ -152,12 +160,15 @@ export default function DropdownMultiSelect({
                 >
                   <Checkbox
                     onCheckedChange={(checked) => {
-                      console.log(`checked ${typeof item.value} ${item.value}`, checked);
+                      console.log(
+                        `checked ${typeof item.id} ${item.title}`,
+                        checked
+                      );
                       onItemSelectedValue &&
-                        onItemSelectedValue(Number(item.value));
+                        onItemSelectedValue(Number(item.id));
                     }}
                   />
-                  {item.label}
+                  {item.title}
                 </CommandItem>
               ))}
             </CommandGroup>

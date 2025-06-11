@@ -6,16 +6,8 @@ import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
 import DropdownList from "./DropdownList";
 import DropdownMultiSelect from "./DropdownMultiSelect";
-import { CategoryType } from "../types/types";
+import { CategoryType, CountryType, StatusType } from "../types/types";
 
-export type StatusType = {
-  value: string;
-  label: string;
-};
-export type CountryType = {
-  value: string;
-  label: string;
-};
 export type MaxChapterOptsType = {
   value: number;
   label: string;

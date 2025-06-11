@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SendIcon } from "lucide-react";
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
-import { CommentType, UserType,userdata  } from "./ItemComment";
+import { CommentType, UserType, userdata } from "./ItemComment";
 function SubmitButton() {
   const { pending } = useFormStatus();
 
@@ -28,12 +28,12 @@ export function CommentForm({ user }: { user: UserType }) {
     }
     const commentNew = {
       content: comment,
-      user:userdata,
+      user: userdata,
       time: new Date().toISOString(),
     } as CommentType;
 
     // add to form
-    
+
     formData.append("data", JSON.stringify(commentNew));
     console.log(commentNew);
     // send the comment to the server

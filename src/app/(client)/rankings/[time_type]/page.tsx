@@ -1,8 +1,8 @@
 import BadgeContent from "@/components/Badge";
-import { categories } from "@/components/content/DropdownList";
+
 import FilterBar from "@/components/content/FilterBar";
 import { stories, ListStory } from "@/components/content/ListStories";
-import { CountryType, SortByType, StatusType } from "@/components/types/types";
+import { CategoryType, CountryType, SortByType, StatusType } from "@/components/types/types";
 import {
   Pagination,
   PaginationContent,
@@ -13,6 +13,72 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { CalendarSearch } from "lucide-react";
+async function getData(): Promise<CategoryType[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: 1,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 2,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 3,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 4,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 5,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 6,
+      title: "Romantic dat anh",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "pending",
+    },
+    // ...
+  ] as CategoryType[];
+}
 
 export default async function Top({
   params,
@@ -78,6 +144,7 @@ export default async function Top({
       label: "Hoàn thành",
     },
   ] as StatusType[];
+  const categories = await getData();
   return (
     <div className="font-semibold font-quicksand">
       <BadgeContent

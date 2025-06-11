@@ -1,13 +1,92 @@
 import BadgeContent from "@/components/Badge";
-import { categories } from "@/components/content/DropdownList";
+
 import FilterBar from "@/components/content/FilterBar";
 
 import { stories, ListStory } from "@/components/content/ListStories";
-import { CountryType, SortByType, StatusType } from "@/components/types/types";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+  CategoryType,
+  CountryType,
+  SortByType,
+  StatusType,
+} from "@/components/types/types";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { FlagIcon } from "lucide-react";
-
+async function getData(): Promise<CategoryType[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: 1,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 2,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 3,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 4,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 5,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 6,
+      title: "Romantic dat anh",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "pending",
+    },
+    // ...
+  ] as CategoryType[];
+}
 async function Category({ params }: { params: Promise<{ id: string }> }) {
+  const data = await getData();
   const { id } = await params;
   const countries = [
     {
@@ -57,7 +136,7 @@ async function Category({ params }: { params: Promise<{ id: string }> }) {
       />
       <div className="w-full">
         <FilterBar
-          categories={categories}
+          categories={data}
           // status={status}
           country={countries}
           sortBy={sortbyList}

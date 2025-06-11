@@ -1,22 +1,87 @@
 import BadgeContent from "@/components/Badge";
 import AdvancedSearchBar, {
-    MaxChapterOptsType,
+  MaxChapterOptsType,
 } from "@/components/content/AdvancedSearchBar";
-import { categoriesList } from "@/components/content/DropdownMultiSelect";
 
-import { stories, ListStory } from "@/components/content/ListStories";
-import { CountryType, SortByType, StatusType } from "@/components/types/types";
+
+import { ListStory, stories } from "@/components/content/ListStories";
+import { CategoryType, CountryType, SortByType, StatusType } from "@/components/types/types";
 import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination";
 import { CalendarSearch } from "lucide-react";
-
+async function getData(): Promise<CategoryType[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: 1,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 2,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 3,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 4,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 5,
+      title: "Romantic",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "active",
+    },
+    {
+      id: 6,
+      title: "Romantic dat anh",
+      country: {
+        value: "china",
+        label: "Trung Quốc",
+      },
+      stories: [],
+      status: "pending",
+    },
+    // ...
+  ] as CategoryType[];
+}
 export default async function Top({
   params,
 }: {
@@ -103,7 +168,7 @@ export default async function Top({
     { value: 400, label: "Nhiều hơn 400" },
     { value: 500, label: "Nhiều hơn 500" },
   ] as MaxChapterOptsType[];
-
+  const categoriesList = await getData();
   return (
     <div className="font-semibold font-quicksand">
       <BadgeContent

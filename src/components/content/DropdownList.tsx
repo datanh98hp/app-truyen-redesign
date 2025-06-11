@@ -16,40 +16,46 @@ import {
 import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown } from "lucide-react";
 import React from "react";
-import { CategoryType } from "../types/types";
+import { CategoryType, CountryType } from "../types/types";
+import { MaxChapterOptsType, SortByType } from "./AdvancedSearchBar";
 
-export const categories = [
-  {
-    value: "11",
-    label: "Next.js",
-  },
-  {
-    value: "22",
-    label: "SvelteKit",
-  },
-  {
-    value: "33",
-    label: "Nuxt.js",
-  },
-  {
-    value: "44",
-    label: "Remix",
-  },
-  {
-    value: "55",
-    label: "Astro",
-  },
-] as CategoryType[];
+// export const categories = [
+//   {
+//     value: "11",
+//     label: "Next.js",
+//   },
+//   {
+//     value: "22",
+//     label: "SvelteKit",
+//   },
+//   {
+//     value: "33",
+//     label: "Nuxt.js",
+//   },
+//   {
+//     value: "44",
+//     label: "Remix",
+//   },
+//   {
+//     value: "55",
+//     label: "Astro",
+//   },
+// ] as CategoryType[];
 export default function DropdownList({
   data,
   placeholder,
   inputPlacehoder,
   onSelectedValue,
 }: {
-  data: { value: string | number; label: string }[];
+  data:
+    | CategoryType[]
+    | SortByType[]
+    | CountryType[]
+    | MaxChapterOptsType[]
+    | any[];
   placeholder?: string;
   inputPlacehoder?: string;
-  onSelectedValue?: (value: string|number) => void;
+  onSelectedValue?: (value: string | number) => void;
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -63,7 +69,7 @@ export default function DropdownList({
           className="w-[200px] justify-between"
         >
           {value
-            ? data?.find((item) => item.value === value)?.label
+            ? data?.find((item: any) => item.id === value)?.title
             : placeholder}
           <ChevronsUpDown className="opacity-50" />
         </Button>
@@ -74,10 +80,10 @@ export default function DropdownList({
           <CommandList>
             <CommandEmpty>Không tìm thấy thể loại.</CommandEmpty>
             <CommandGroup>
-              {data.map((item) => (
+              {data.map((item: any) => (
                 <CommandItem
-                  key={item.value}
-                  value={item.value.toString()}
+                  key={item.id}
+                  value={item.title.toString()}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
@@ -88,11 +94,11 @@ export default function DropdownList({
                       );
                   }}
                 >
-                  {item.label}
+                  {item.title}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === item.value ? "opacity-100" : "opacity-0"
+                      value === item.id ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

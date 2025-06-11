@@ -3,19 +3,24 @@ export type StatusType = {
   label: string;
 };
 export type CountryType = {
+  id?:number;
   value: string;
   label: string;
 };
 export type CategoryType = {
-  value: number | string;
-  label: string;
+  id?: number | string;
+  title: number | string;
+  status?: boolean | string;
+  stories?: Story[];
+  country?: CountryType;
+  description?: string;
 };
 export type SortByType = { value: string; label: string };
 export type FilterBarProps = {
   status?: StatusType[];
   country?: CountryType[];
   categories?: CategoryType[];
-  sortBy?: SortByType[];
+  sortBy?: SortByType[];  
 };
 export type ChapterType = {
   id: number;
@@ -41,5 +46,6 @@ export type Story = {
   folowersCount?: number;
   description?: string;
   chapters?: ChapterType[];
+  country?: CountryType;
   tag?: string[] /// tag : viewsCount > 50 => "hot"
 };
