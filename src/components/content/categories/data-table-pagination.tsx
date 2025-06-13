@@ -42,7 +42,8 @@ export function DataTablePagination<TData>({
             </SelectTrigger>
             <SelectContent side="top">
               {[5,10, 20, 25, 30, 40, 50].map((pageSize) => (
-                <SelectItem key={pageSize} value={`${pageSize}`}>
+                <SelectItem key={pageSize} value={`${pageSize}`} 
+                onClick={() => console.log(`Load data from server with page = `)}>
                   {pageSize}
                 </SelectItem>
               ))}
@@ -50,7 +51,7 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          Trang {table.getState().pagination.pageIndex + 1} /{" "}
           {table.getPageCount()}
         </div>
         <div className="flex items-center space-x-2">

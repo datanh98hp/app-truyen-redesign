@@ -5,7 +5,7 @@ const protectedRoutes = ["/dashboard", "/settings", "/profile"];
 
 export default async function middleware(
   request: NextRequest,
-  response: NextResponse
+  // response: NextResponse
 ) {
   // console.log("middleware running");
   const token = await getToken({

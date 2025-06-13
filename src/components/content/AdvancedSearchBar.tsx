@@ -6,13 +6,14 @@ import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
 import DropdownList from "./DropdownList";
 import DropdownMultiSelect from "./DropdownMultiSelect";
-import { CategoryType, CountryType, StatusType } from "../types/types";
+import {
+  CategoryType,
+  CountryType,
+  MaxChapterOptsType,
+  SortByType,
+  StatusType,
+} from "../types/types";
 
-export type MaxChapterOptsType = {
-  value: number;
-  label: string;
-};
-export type SortByType = { value: string; label: string };
 type FilterAdvancedBarProps = {
   status: StatusType[];
   country: CountryType[];
@@ -99,6 +100,7 @@ export default function AdvancedSearchBar({
   const handleSelectedMaxChapter = (value: number) => {
     // const maxChapter = parseInt(value, 10);
     updateFilter({ ...filterData.filter, max_chapter: value });
+
     console.log("Status Filter advanced :", filter);
   };
   return (
@@ -117,9 +119,9 @@ export default function AdvancedSearchBar({
       <div className="flex flex-row gap-4 p-2">
         <p className="font-semibold p-2">Trạng thái</p>
         <div className="flex flex-row gap-2">
-          {status.map((item) => (
+          {status.map((item, index) => (
             <Button
-              key={item.value}
+              key={index}
               variant={"outline"}
               onClick={() => handleStatusFilter(item.value)}
               className={cn(
@@ -131,7 +133,7 @@ export default function AdvancedSearchBar({
                 }`
               )}
             >
-              {item.label}
+              {item.title}
             </Button>
           ))}
         </div>
@@ -153,21 +155,22 @@ export default function AdvancedSearchBar({
                 }`
               )}
             >
-              {item.label}
+              {item.title}
             </Button>
           ))}
         </div>
       </div>
       <div className="flex flex-row gap-4 p-2">
-        <p className="font-semibold p-2">Thể loại</p>
+        <p className="font-semibold p-2">Số chương</p>
         <div className="flex flex-row gap-2">
           <DropdownList
             data={maxChapterOptsion}
             placeholder="Số chương tối đa"
-            inputPlacehoder="Số chương ..."
-            onSelectedValue={(value: string | number) =>
-              handleSelectedMaxChapter(+value.toString())
-            }
+            // inputPlacehoder="Số chương ..."
+            onSelectedValue={(value: string | number) => {
+              console.log(value);
+              handleSelectedMaxChapter(+value);
+            }}
           />
         </div>
       </div>
@@ -176,7 +179,7 @@ export default function AdvancedSearchBar({
         <div className="flex flex-row gap-2">
           <DropdownList
             data={sortBy}
-            placeholder="Chọn sắp xếp"
+            placeholder="Chọn sắp xếp theo"
             inputPlacehoder="Sắp xếp theo ..."
             onSelectedValue={(value: string | number) => {
               handleSortByChange(value.toString());

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SendIcon } from "lucide-react";
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
-import { CommentType, UserType, userdata } from "./ItemComment";
+import { CommentType, UserType } from "./ItemComment";
 function SubmitButton() {
   const { pending } = useFormStatus();
 
@@ -17,7 +17,7 @@ function SubmitButton() {
   );
 }
 
-export function CommentForm({ user }: { user: UserType }) {
+export function CommentForm({ user }: { user?: UserType }) {
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(formData: FormData) {
@@ -28,7 +28,8 @@ export function CommentForm({ user }: { user: UserType }) {
     }
     const commentNew = {
       content: comment,
-      user: userdata,
+      // user: userdata,
+      user,
       time: new Date().toISOString(),
     } as CommentType;
 

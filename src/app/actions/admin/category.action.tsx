@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 export async function updateCategory(formData: FormData) {
   const data = JSON.parse(formData.get("data") as string);
   console.log(formData);
@@ -8,34 +10,46 @@ export async function updateCategory(formData: FormData) {
     console.log(
       `==> Excute updateCategory with data : ${JSON.stringify(data)}`
     );
+    revalidatePath("/admin/category");
     return { success: true };
   } catch (error) {
-    throw new Error("Failed to update category");
+    return { error };
   }
 }
 export async function addCategory(formData: FormData) {
   const data = JSON.parse(formData.get("data") as string);
   try {
     // TODO: Add your database logic here
-    console.log(
-      `==> Excute addCategory with data : ${JSON.stringify(data)}`
-    );
+    console.log(`==> Excute addCategory with data : ${JSON.stringify(data)}`);
+    revalidatePath("/admin/category");
     return { success: true };
-  } catch (error) {
-    throw new Error("Failed to create category");
+  } catch (error: unknown) {
+    return { error };
   }
 }
 
+export async function deleteCategory(id: number) {
+  // const data = JSON.parse(formData.get("data") as string);
 
-export async function deleteCategory(formData: FormData) {
-  const data = JSON.parse(formData.get("data") as string);
+  try {
+    // TODO: Add your database logic here
+    console.log(`==> Excute deleteCategory with data id : ${id}`);
+    revalidatePath("/admin/category");
+    return { success: true };
+  } catch (error: unknown) {
+    return { error };
+  }
+}
+export async function multipleDeleteCategory(formData: FormData) {
+  const ids = JSON.parse(formData.get("ids") as string);
   try {
     // TODO: Add your database logic here
     console.log(
-      `==> Excute deleteCategory with data : ${JSON.stringify(data)}`
+      `==> Excute deleteMultipleCategory with data : ${JSON.stringify(ids)}`
     );
+    revalidatePath("/admin/category");
     return { success: true };
-  } catch (error) {
-    throw new Error("Failed to delete category");
+  } catch (error: unknown) {
+    return { error };
   }
 }

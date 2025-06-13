@@ -1,19 +1,17 @@
 "use client";
 
-import { addComment } from "@/app/actions/add-comment.action";
 import { addCategory } from "@/app/actions/admin/category.action";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { PlusIcon, SendIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
-
+import { Label } from "@/components/ui/label";
 function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} >
+    <Button type="submit" disabled={pending}>
       {pending ? "Submitting..." : <PlusIcon className=" rounded-full" />}
     </Button>
   );
@@ -54,20 +52,19 @@ export function AddCategoryForm() {
       action={handleSubmit}
       className="flex flex-row gap-4 mx-2"
     >
-      <div className="border flex-col justify-center items-center gap-4">
-        <Input
-          name="title"
-          placeholder="Tiêu đề..."
-          required
-          className="border-1 dark:border-0 rounded-xs  dark:focus:ring-0 dark:focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-        />
-
-        <Input
-          name="country"
-          placeholder="Quốc gia..."
-          required
-          className="border-1 dark:border-0 rounded-xs  dark:focus:ring-0 dark:focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-        />
+      <div className="grid gap-4">
+        <div className="grid gap-3">
+          <Label htmlFor="title">Tiêu đề</Label>
+          <Input id="title" name="title" placeholder="Tiêu đề" />
+        </div>
+        <div className="grid gap-3">
+          <Label htmlFor="country">Quốc gia</Label>
+          <Input
+            id="country"
+            name="country"
+            placeholder="Quốc gia nguồn gốc thể loại"
+          />
+        </div>
       </div>
       <div className="mr-2">
         <SubmitButton />

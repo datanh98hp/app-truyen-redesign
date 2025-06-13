@@ -11,7 +11,7 @@ export default async function ClientLayout({
   // console.log(`session layout : `, session);
   return (
     <div className="">
-      <Header session_={session} />
+      <Header />
       <main className="max-w-7xl mx-auto px-2">{children}</main>
       <Footer />
     </div>

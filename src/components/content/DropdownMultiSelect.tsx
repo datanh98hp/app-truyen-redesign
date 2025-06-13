@@ -16,7 +16,6 @@ import {
 import { ChevronsUpDown } from "lucide-react";
 import React from "react";
 import { Checkbox } from "../ui/checkbox";
-import { CategoryType } from "../types/types";
 
 // export const categoriesList = [
 //   {
@@ -134,7 +133,7 @@ export default function DropdownMultiSelect({
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value ? data?.find((item) => item.id === value)?.title : placeholder}
+          {value ? data?.find((item) => item.title === value)?.title : placeholder}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -147,11 +146,13 @@ export default function DropdownMultiSelect({
               {data.map((item) => (
                 <CommandItem
                   key={item.id}
-                  //   value={item.value.toString()}
+                  value={item.id}
                   onSelect={(currentValue) => {
-                    // setValue(currentValue === value ? "" : currentValue);
-                    // setOpen(false);
-                    // // Call the function to handle selected value
+                    console.log(currentValue); //title
+                    console.log("value:", item);
+                    setValue(item.title === value ? "" : currentValue);
+                    setOpen(false);
+                    // Call the function to handle selected value
                     // onSelectedValue &&
                     //   onSelectedValue(
                     //     value === currentValue ? "" : currentValue

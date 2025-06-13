@@ -1,6 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import GitHubProvider, { GithubEmail } from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+// import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions: NextAuthOptions = {
   session: {
@@ -58,7 +58,7 @@ export const authOptions: NextAuthOptions = {
       },
       token: "https://github.com/login/oauth/access_token",
       userinfo: {
-        async request({ client, tokens, provider }) {
+        async request({ client, tokens }) {
           {
             const profile = await client.userinfo(tokens.access_token!);
             const res = await fetch("https://api.github.com/user/emails", {
@@ -105,7 +105,7 @@ export const authOptions: NextAuthOptions = {
       }
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token as any;
       return session;
     },

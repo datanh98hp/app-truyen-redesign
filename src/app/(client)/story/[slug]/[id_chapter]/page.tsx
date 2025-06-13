@@ -21,26 +21,26 @@ export default async function StoryChapterPage({
   console.log("id_chapter:", id);
   console.log("slug story:", slug);
   const getCurrentChapter = () => {
-    var t = id_chapter.split("-")[0];
+    const t = id_chapter.split("-")[0];
     return Number(t.split("_")[1]);
   };
   console.log("current chapter:", getCurrentChapter());
   const chapterString = () => {
     return "Chương " + id_chapter.split("-").reverse()[0];
   };
-  const data_details = null as any;
+  // const data_details = null as any;
   return (
     <div className="relative min-h-screen">
       <div className="font-semibold font-quicksand w-full  rounded-sm border dark:bg-gray-900 bg-gray-200">
         <span id="top"></span>
-        {!data_details == null && (
+        {/* {!data_details == null && (
           <div className="font-semibold font-quicksand w-full">
             <h1 className="text-2xl text-center my-4">Chưa có nội dung</h1>
             <p className="text-center text-gray-500">
               Nội dung sẽ được cập nhật sớm nhất -{slug}_{id_chapter}
             </p>
           </div>
-        )}
+        )} */}
 
         <div className="m-4">
           <Breadcrumb aria-label="Breadcrumb" className="hidden lg:block">

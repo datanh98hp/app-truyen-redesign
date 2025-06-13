@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ArrowUpRight, CheckCircle, Icon, LoaderIcon } from "lucide-react";
+import { ArrowUpRight, CheckCircle, LoaderIcon } from "lucide-react";
 const invoices = [
   {
     invoice: "INV001",

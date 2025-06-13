@@ -6,8 +6,7 @@ import { FilterContext } from "../context/filter.context";
 import { Button } from "../ui/button";
 import DropdownList from "./DropdownList";
 import { FilterBarProps } from "../types/types";
-
-
+import { ComboboxCommand } from "../ComboboxCommand";
 
 export default function FilterBar({
   categories,
@@ -45,13 +44,11 @@ export default function FilterBar({
         <div className="flex flex-row gap-4 p-2">
           <p className="font-semibold p-2">Thể loại</p>
           <div className="flex flex-row gap-2">
-            <DropdownList
-              data={categories || []}
+            <ComboboxCommand
+              data={categories}
               placeholder="Chọn thể loại"
-              inputPlacehoder="Sắp xếp theo ..."
-              onSelectedValue={(value: string | number) =>
-                handleCateChange(value.toString())
-              }
+              inputPlacehoder="Tim kiếm thể loại"
+              onSelectedValue={(value: any) => handleCateChange(value)}
             />
           </div>
         </div>
@@ -74,7 +71,7 @@ export default function FilterBar({
                   }`
                 )}
               >
-                {item.label}
+                {item.title}
               </Button>
             ))}
           </div>
@@ -98,16 +95,16 @@ export default function FilterBar({
                   }`
                 )}
               >
-                {item.label}
+                {item.title}
               </Button>
             ))}
           </div>
         </div>
       )}
       {sortBy !== undefined && sortBy.length > 0 && (
-        <div className="flex flex-row gap-4 p-2">
+        <div className="flex flex-row gap-4 p-2  border">
           <p className="font-semibold p-2">Sắp xếp</p>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-2 ">
             <DropdownList
               data={sortBy || []}
               placeholder="Chọn sắp xếp"

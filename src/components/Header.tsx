@@ -94,9 +94,9 @@ const menuItems: MenuItem[] = [
     label: "Fanpage",
     href: "/",
   },
-];
+] as MenuItem[];
 
-export default function Header({ session_ }: { session_?: any }) {
+export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<number[]>([]);
   //search input

@@ -1,12 +1,15 @@
 import BadgeContent from "@/components/Badge";
-import { stories, ListStory } from "@/components/content/ListStories";
+import { ListStory } from "@/components/content/ListStories";
 import { SwipperContent } from "@/components/content/swipper";
+import { getData, getLatestDatagetLatestData } from "@/lib/data";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
-  // get data from api
 
+export default async function Home() {
+  // get data from api
+  const stories_latest = await getLatestDatagetLatestData();
+  const data = await getData();
   // genSlug for each chapter
 
   return (
@@ -18,7 +21,7 @@ export default function Home() {
           textColor="#ff2853"
         />
       </div>
-      <SwipperContent />
+      <SwipperContent data={stories_latest} />
       <div className="py-4">
         <BadgeContent
           icon={<StarIcon />}
@@ -30,7 +33,7 @@ export default function Home() {
       <div className="my-2 ">
         {/* <span>Danh sách được hiển thị top lượt đọc trong : {time_type}</span> */}
         <div className="flex flex-col items-center">
-          <ListStory data={stories} />
+          <ListStory data={data} />
           <Link
             href="?page=2"
             className="my-4 p-2 rounded-md bg-amber-600 text-amber-50 dark:bg-gray-800 dark:text-gray-50 hover:opacity-80"

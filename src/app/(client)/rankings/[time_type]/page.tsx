@@ -1,8 +1,7 @@
 import BadgeContent from "@/components/Badge";
 
 import FilterBar from "@/components/content/FilterBar";
-import { stories, ListStory } from "@/components/content/ListStories";
-import { CategoryType, CountryType, SortByType, StatusType } from "@/components/types/types";
+import { ListStory } from "@/components/content/ListStories";
 import {
   Pagination,
   PaginationContent,
@@ -12,73 +11,14 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import {
+  getCategories,
+  getCountries,
+  getSortByList,
+  getStatusList,
+  getStories
+} from "@/lib/data";
 import { CalendarSearch } from "lucide-react";
-async function getData(): Promise<CategoryType[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: 1,
-      title: "Romantic",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "active",
-    },
-    {
-      id: 2,
-      title: "Romantic",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "active",
-    },
-    {
-      id: 3,
-      title: "Romantic",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "active",
-    },
-    {
-      id: 4,
-      title: "Romantic",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "active",
-    },
-    {
-      id: 5,
-      title: "Romantic",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "active",
-    },
-    {
-      id: 6,
-      title: "Romantic dat anh",
-      country: {
-        value: "china",
-        label: "Trung Quốc",
-      },
-      stories: [],
-      status: "pending",
-    },
-    // ...
-  ] as CategoryType[];
-}
 
 export default async function Top({
   params,
@@ -106,45 +46,12 @@ export default async function Top({
     }
   };
 
-  const countries = [
-    {
-      value: "vietnam",
-      label: "Việt Nam",
-    },
-    {
-      value: "china",
-      label: "Trung Quốc",
-    },
-    {
-      value: "korea",
-      label: "Hàn Quốc",
-    },
-  ] as CountryType[];
-  const sortbyList = [
-    {
-      value: "latest",
-      label: "Mới nhất",
-    },
-    {
-      value: "views",
-      label: "Lượt xem",
-    },
-    {
-      value: "favorites",
-      label: "Yêu thích",
-    },
-  ] as SortByType[];
-  const status = [
-    {
-      value: "ongoing",
-      label: "Đang tiến hành",
-    },
-    {
-      value: "completed",
-      label: "Hoàn thành",
-    },
-  ] as StatusType[];
-  const categories = await getData();
+  const stories = await getStories();
+  const categories = await getCategories();
+  const countries = await getCountries();
+  const sortbyList = await getSortByList();
+  // const max_chapter_options = await getMaxChapterOption();
+  const status_list = await getStatusList();
   return (
     <div className="font-semibold font-quicksand">
       <BadgeContent
@@ -156,7 +63,7 @@ export default async function Top({
       <div className="w-full">
         <FilterBar
           categories={categories}
-          status={status}
+          status={status_list}
           country={countries}
           sortBy={sortbyList}
         />

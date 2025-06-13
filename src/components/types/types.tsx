@@ -1,11 +1,12 @@
 export type StatusType = {
+  id?: number;
   value: string;
-  label: string;
+  title: string;
 };
 export type CountryType = {
-  id?:number;
+  id?: number;
   value: string;
-  label: string;
+  title: string;
 };
 export type CategoryType = {
   id?: number | string;
@@ -15,12 +16,22 @@ export type CategoryType = {
   country?: CountryType;
   description?: string;
 };
-export type SortByType = { value: string; label: string };
+
 export type FilterBarProps = {
   status?: StatusType[];
   country?: CountryType[];
   categories?: CategoryType[];
-  sortBy?: SortByType[];  
+  sortBy?: SortByType[];
+};
+export type MaxChapterOptsType = {
+  id?: number;
+  value: number;
+  title: string;
+};
+export type SortByType = {
+  id: number;
+  value: string;
+  title: string;
 };
 export type ChapterType = {
   id: number;
@@ -31,7 +42,7 @@ export type ChapterType = {
   description?: string;
   content?: string;
   createAt: string;
-}
+};
 export type Story = {
   id?: number;
   thumb: string;
@@ -47,5 +58,5 @@ export type Story = {
   description?: string;
   chapters?: ChapterType[];
   country?: CountryType;
-  tag?: string[] /// tag : viewsCount > 50 => "hot"
+  tag?: string[]; /// tag : viewsCount > 50 => "hot"
 };

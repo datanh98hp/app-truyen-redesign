@@ -9,7 +9,7 @@ export async function addComment(formData: FormData) {
     // Example: await db.comments.create({ content: comment });
     console.log(`==>New comment: ${JSON.stringify(comment)}`);
     return { success: true };
-  } catch (error) {
-    throw new Error("Failed to create comment");
+  } catch (error: unknown) {
+    return { error };
   }
 }

@@ -5,12 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { stories } from "./ListStories";
+import { Story } from "../types/types";
 
-export function SwipperContent() {
+
+export function SwipperContent({ data }: { data: Story[] }) {
   //get latest stories from api
-
-  const data = [];
   const handleOnClickItem = () => {};
   return (
     <div className="mx-auto md:p-0 h-fit">
@@ -45,7 +44,7 @@ export function SwipperContent() {
         modules={[Navigation, Autoplay, Pagination]}
         className="mySwiper"
       >
-        {stories.map((item, index) => (
+        {data.map((item, index) => (
           <SwiperSlide key={index} className="">
             <div className="h-full chapter-item" onClick={handleOnClickItem}>
               <Image

@@ -129,17 +129,17 @@ export default async function StoryPage({
   console.log("id:", id_story);
   // console.log("slug:", slugContent);
   /// get detail story
-  const detailStory = null as any;
+  // const detailStory = null as any;
   return (
     <div className="font-semibold font-quicksand w-full mt-10 rounded-sm border dark:bg-gray-900 bg-gray-200">
-      {!detailStory == null && (
+      {/* {!detailStory == null && (
         <div>
           <h1 className="text-2xl text-center my-4">{"Chưa có nội dung"}</h1>
           <p className="text-center text-gray-500">
             Nội dung sẽ được cập nhật sớm nhất - {slug}
           </p>
         </div>
-      )}
+      )} */}
       {/* <div>
         <h1 className="text-2xl text-center my-4">Chưa có nội dung</h1>
         <p className="text-center text-gray-500">
