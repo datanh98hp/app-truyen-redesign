@@ -75,7 +75,7 @@ export default function AdvancedSearchBar({
     console.log("Status Filter advanced Set:", filter.includes?.sortBy);
   };
 
-  const handleItemChecked = (value: number) => {
+  const handleItemChecked = (value: number | string) => {
     // Ensure includes and categories are defined and value is a number
     const includes = filterData.filter.includes ?? {
       categories: [],
@@ -112,7 +112,9 @@ export default function AdvancedSearchBar({
             data={categories}
             placeholder="Chọn thể loại ..."
             inputPlacehoder="Chọn loại ..."
-            onItemSelectedValue={(value: number) => handleItemChecked(value)}
+            onItemSelectedValue={(value: number | string) =>
+              handleItemChecked(value)
+            }
           />
         </div>
       </div>

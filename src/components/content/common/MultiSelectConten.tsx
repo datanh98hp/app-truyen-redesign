@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Command,
   CommandEmpty,
@@ -15,17 +16,17 @@ import {
 } from "@/components/ui/popover";
 import { ChevronsUpDown } from "lucide-react";
 import React from "react";
-import { Checkbox } from "../ui/checkbox";
-
-export default function DropdownMultiSelect({
+export default function MultiSelect({
   data,
   placeholder,
   inputPlacehoder,
+  defaultValues,
   onItemSelectedValue,
 }: {
   data: any[];
   placeholder?: string;
   inputPlacehoder?: string;
+  defaultValues?: any[];
   onItemSelectedValue?: (value: number) => void;
 }) {
   const [open, setOpen] = React.useState(false);
@@ -46,7 +47,7 @@ export default function DropdownMultiSelect({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder={inputPlacehoder} className="h-9" />
+          <CommandInput placeholder={inputPlacehoder} className="h-9"  />
           <CommandList>
             <CommandEmpty>Không tìm thấy thể loại.</CommandEmpty>
             <CommandGroup>

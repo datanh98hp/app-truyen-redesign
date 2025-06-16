@@ -24,11 +24,13 @@ import {
   MaxChapterOptsType,
   SortByType,
 } from "./types/types";
+import { set } from "react-hook-form";
 
 export function ComboboxCommand({
   data,
   placeholder,
   inputPlacehoder,
+  defaultValue,
   onSelectedValue,
 }: {
   data:
@@ -39,7 +41,8 @@ export function ComboboxCommand({
     | any[];
   placeholder?: string;
   inputPlacehoder?: string;
-  onSelectedValue?: (value: string | number) => void;
+  defaultValue?: number | string;
+  onSelectedValue?: (value: number) => void;
 }) {
   const [open, setOpen] = React.useState(false);
   const [input, setid] = React.useState("");
@@ -74,12 +77,14 @@ export function ComboboxCommand({
                   className="hover:bg-gray-100"
                   key={item.id}
                   id={item.id}
+                  value={defaultValue === item.id ? item.title : ""}
                   onSelect={(currentValue) => {
                     console.log("currentid", currentValue);
                     console.log("framework ", item);
                     console.log("input (prev value) :", input);
 
                     setid(currentValue === input ? "" : currentValue);
+
                     setOpen(false);
                     handleChanged(item);
                   }}

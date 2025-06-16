@@ -1,7 +1,7 @@
 export type StatusType = {
   id?: number;
   value: string;
-  title: string;
+  title?: string;
 };
 export type CountryType = {
   id?: number;
@@ -9,8 +9,8 @@ export type CountryType = {
   title: string;
 };
 export type CategoryType = {
-  id?: number | string;
-  title: number | string;
+  id?: number;
+  title: string;
   status?: boolean | string;
   stories?: Story[];
   country?: CountryType;
@@ -41,13 +41,13 @@ export type ChapterType = {
   slug: string;
   description?: string;
   content?: string;
-  createAt: string;
+  createAt?: string;
 };
 export type Story = {
   id?: number;
   thumb: string;
   title: string;
-  author: string;
+  author?: string; //replace by user entity
   sub: string;
   slug?: string;
   categories?: CategoryType[];
@@ -56,7 +56,7 @@ export type Story = {
   likeCount?: number;
   folowersCount?: number;
   description?: string;
-  chapters?: ChapterType[];
-  country?: CountryType;
-  tag?: string[]; /// tag : viewsCount > 50 => "hot"
+  chapters?: ChapterType[]; // or count chapter of story
+  country?: string;
+  tag?: string; /// tag : viewsCount > 50 => "hot"
 };

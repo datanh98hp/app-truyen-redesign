@@ -32,7 +32,7 @@ export default async function AdminCategory() {
   //   console.log(data);
   return (
     <>
-      <div className="grid auto-rows-min gap-4 md:grid-cols-6 grid-cols-2">
+      <div className="grid auto-rows-min gap-4 md:grid-cols-4 grid-cols-2">
         {/* <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border">
           <div className="flex flex-col gap-3 p-6 ">
             <p className="font-bold text-2xl text-center">Danh mục</p>
@@ -100,24 +100,7 @@ export default async function AdminCategory() {
             </p>
           </div>
         </div>
-        <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border ">
-          <div className="flex flex-col gap-3 p-6 ">
-            <p className="font-bold text-2xl">Lượt phản hồi</p>
-            <p className="flex flex-row text-5xl">
-              <span>100</span>
-              <ArrowUpRight size={50} className="text-green-500" />
-            </p>
-          </div>
-        </div>
-        <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border ">
-          <div className="flex flex-col gap-3 p-6 ">
-            <p className="font-bold text-2xl">Lượt phản hồi</p>
-            <p className="flex flex-row text-5xl">
-              <span>100</span>
-              <ArrowUpRight size={50} className="text-green-500" />
-            </p>
-          </div>
-        </div>
+       
       </div>
       <div className="min-h-[100vh] flex-1 rounded-xl md:min-h-min">
         <div className="grid auto-rows-min gap-2 lg:grid-cols-2 grid-cols-1 ">

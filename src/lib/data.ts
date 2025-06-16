@@ -1,5 +1,6 @@
 import {
   CategoryType,
+  ChapterType,
   CountryType,
   MaxChapterOptsType,
   SortByType,
@@ -294,18 +295,29 @@ export async function getData(): Promise<Story[]> {
   return await [
     {
       id: 1,
-      thumb: "", // hinh anh cua chapter
+      thumb: "/assets/thumb.png", // hinh anh cua chapter
       author: "admin",
       title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
       sub: "100 chapter", // chapter moi nhat cua truyen / tong so chuong
-      categories: [], // thoi gian cap nhat chapter
+      categories: [
+        {
+          id: 1,
+          title: "Romantic 1",
+          country: {
+            value: "china",
+            title: "Trung Quốc",
+          },
+          stories: [],
+          status: "active",
+        },
+      ], //
       status: {
-        value: "complete",
-        title: "Hoaàn Thành",
+        value: "completed",
+        title: "Hoàn Thành",
       },
       viewsCount: 0,
       folowersCount: 0,
-      description: "",
+      description: "Mô tả",
       slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
       chapters: [
         {
@@ -327,6 +339,8 @@ export async function getData(): Promise<Story[]> {
           createAt: "2025-06-01",
         },
       ],
+      country: "Trung Quoc",
+      tag: "tag1,tag2",
     },
     {
       id: 2,
@@ -432,7 +446,57 @@ export async function getData(): Promise<Story[]> {
     },
   ];
 }
-
+export async function getDataById(id: number): Promise<Story> {
+  return (await {
+    id: 1,
+    thumb: "/assets/thumb.png", // hinh anh cua chapter
+    author: "admin",
+    title: "Ông Chú Và 100 Con Rồng Dựng Nên Quốc Gia Mạnh Nhất!",
+    sub: "100 chapter", // chapter moi nhat cua truyen / tong so chuong
+    categories: [
+      {
+        id: 1,
+        title: "Romantic 1",
+        country: {
+          value: "china",
+          title: "Trung Quốc",
+        },
+        stories: [],
+        status: "active",
+      },
+    ], //
+    status: {
+      value: "completed",
+      title: "Hoàn Thành",
+    },
+    viewsCount: 0,
+    folowersCount: 0,
+    description: "Mô tả",
+    slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
+    chapters: [
+      {
+        id: 1,
+        thumb: "",
+        sub: "chapter 1",
+        title: "Chapter 1",
+        slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
+        content: "Content of chapter is markdown / html / pdf",
+        createAt: "2025-06-01",
+      },
+      {
+        id: 22,
+        thumb: "",
+        title: "Chapter 2",
+        sub: "chapter 2",
+        slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
+        content: "Content of chapter is markdown / html / pdf",
+        createAt: "2025-06-01",
+      },
+    ],
+    country: "Trung Quoc",
+    tag: "tag1,tag2",
+  }) as Story;
+}
 export async function getCategories(): Promise<CategoryType[]> {
   // Fetch data from your API here.
   return [
@@ -451,7 +515,7 @@ export async function getCategories(): Promise<CategoryType[]> {
       title: "Romantic 2",
       country: {
         value: "china",
-        label: "Trung Quốc",
+        title: "Trung Quốc",
       },
       stories: [],
       status: "active",
@@ -461,7 +525,7 @@ export async function getCategories(): Promise<CategoryType[]> {
       title: "Romantic 3",
       country: {
         value: "china",
-        label: "Trung Quốc",
+        title: "Trung Quốc",
       },
       stories: [],
       status: "active",
@@ -471,7 +535,7 @@ export async function getCategories(): Promise<CategoryType[]> {
       title: "Romantic 4",
       country: {
         value: "china",
-        label: "Trung Quốc",
+        title: "Trung Quốc",
       },
       stories: [],
       status: "active",
@@ -481,7 +545,7 @@ export async function getCategories(): Promise<CategoryType[]> {
       title: "Romantic 5",
       country: {
         value: "china",
-        label: "Trung Quốc",
+        title: "Trung Quốc",
       },
       stories: [],
       status: "active",
@@ -491,7 +555,7 @@ export async function getCategories(): Promise<CategoryType[]> {
       title: "Romantic dat anh",
       country: {
         value: "china",
-        label: "Trung Quốc",
+        title: "Trung Quốc",
       },
       stories: [],
       status: "pending",
@@ -583,4 +647,30 @@ export async function getStatusList(): Promise<StatusType[]> {
       title: "Hoàn thành",
     },
   ];
+}
+
+// get chapters by id
+export async function getChaptersById(id: number): Promise<ChapterType[]> {
+  // Fetch data from your API here.
+  id = 1;
+  return (await [
+    {
+      id: 1,
+      thumb: "/assets/thumb.png",
+      sub: "chapter 1",
+      title: "Chapter 1",
+      slug: "ong-chu-va-100-con-rong-dung-nen-quoc-gia-manh-nhat",
+      content: "Content of chapter is markdown / html / pdf",
+      createAt: "2025-06-01",
+    },
+    {
+      id: 2,
+      thumb: "",
+      title: "Chapter 2",
+      sub: "chapter 2",
+      slug: "thien-kim-toan-nang-ba-khi-ngut-troi",
+      content: "Content of chapter is markdown / html / pdf",
+      createAt: "2025-06-01",
+    },
+  ]) as ChapterType[];
 }

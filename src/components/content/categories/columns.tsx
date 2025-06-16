@@ -1,12 +1,4 @@
 "use client";
-// type CategoryTypeTb = {
-//   id: string | number
-//   amount: number
-//   status: "active" | "hiddend"
-//   title: string
-//   country: string
-//   createdAt: string
-// }
 
 import { CategoryType } from "@/components/types/types";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -82,6 +74,6 @@ export const columns: ColumnDef<CategoryType>[] = [
   {
     accessorKey: "action",
     header: () => <div className="text-center ">...</div>,
-    cell: ({ row }) => <ActionGroupButton  row={row} />,
+    cell: ({ row }) => <ActionGroupButton row={row} />,
   },
 ];

@@ -57,7 +57,7 @@ const invoices = [
 export default function Page() {
   return (
     <>
-      <div className="grid auto-rows-min gap-2 lg:grid-cols-6 grid-cols-2">
+      <div className="grid auto-rows-min gap-2 lg:grid-cols-4 grid-cols-2">
         <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border">
           <div className="flex flex-col gap-3 p-6 ">
             <p className="font-bold text-2xl">Users</p>
@@ -95,24 +95,6 @@ export default function Page() {
           <div className="flex flex-col gap-3 p-6 ">
             <p className="font-bold text-2xl">Danh mục</p>
             <p className="text-5xl">100</p>
-          </div>
-        </div>
-        <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border ">
-          <div className="flex flex-col gap-3 p-6 ">
-            <p className="font-bold text-2xl">Lượt phản hồi</p>
-            <p className="flex flex-row text-5xl">
-              <span>100</span>
-              <ArrowUpRight size={50} className="text-green-500" />
-            </p>
-          </div>
-        </div>
-        <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border ">
-          <div className="flex flex-col gap-3 p-6 ">
-            <p className="font-bold text-2xl">Lượt phản hồi</p>
-            <p className="flex flex-row text-5xl">
-              <span>100</span>
-              <ArrowUpRight size={50} className="text-green-500" />
-            </p>
           </div>
         </div>
         <div className="bg-muted/50 aspect-video rounded-xl dark:border-0 border ">
